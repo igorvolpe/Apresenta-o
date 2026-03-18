@@ -10,88 +10,89 @@
         :root { --primary: #ff4d6d; --bg: #fff5f6; --text: #2b2d42; --night: #0b132b; }
         * { margin: 0; padding: 0; box-sizing: border-box; } 
         
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; transition: background 1s ease; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
 
-        /* Container de Deslize Lateral */
-        .timeline-wrapper { display: flex; width: 500vw; height: 100vh; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
+        /* Navegação Horizontal - Agora com 600vw para 6 seções */
+        .timeline-wrapper { display: flex; width: 600vw; height: 100vh; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
         
         section { width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px; text-align: center; position: relative; }
 
-        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(2.5rem, 8vw, 4.5rem); color: var(--primary); margin-bottom: 25px; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--primary); margin-bottom: 20px; }
         
-        .texto-principal { font-size: 1.15rem; max-width: 650px; font-weight: 300; line-height: 1.8; margin-bottom: 20px; }
-
-        /* Botão de Música */
-        #music-btn { position: fixed; top: 20px; right: 20px; z-index: 2000; background: white; border: none; padding: 12px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; }
-
-        /* Estilo Noite */
-        .section-night { background: var(--night) !important; color: white !important; }
-        .section-night h1 { color: #5bc0be; }
-
-        /* Corações */
-        .floating-heart { position: absolute; pointer-events: none; animation: floatUp 4s linear infinite; z-index: 1; opacity: 0.5; }
-        @keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-110vh); opacity: 0; } }
+        /* Estilo da Carta Final */
+        .sessao-carta { background: #fffcf2 !important; color: #444 !important; }
+        .moldura-carta { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 10px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            max-width: 700px; 
+            text-align: left; 
+            line-height: 1.8;
+            border: 1px solid #eee;
+            position: relative;
+        }
 
         .btn-next { margin-top: 30px; padding: 15px 45px; border-radius: 100px; border: none; background: var(--text); color: white; font-weight: 600; cursor: pointer; transition: 0.3s; z-index: 100; }
         .btn-next:hover { background: var(--primary); transform: scale(1.05); }
 
-        .card-futuro { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 30px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); margin-top: 20px; text-align: left; max-width: 550px; }
+        .card-futuro { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); margin-top: 20px; text-align: left; max-width: 500px; }
+        .section-night { background: var(--night) !important; color: white !important; }
+        .floating-heart { position: absolute; pointer-events: none; animation: floatUp 4s linear infinite; opacity: 0.5; }
+        @keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-110vh); opacity: 0; } }
     </style>
 </head>
 <body>
 
-    <button id="music-btn" onclick="toggleMusic()">🎵</button>
-    <audio id="bg-music" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
-    </audio>
-
     <div class="timeline-wrapper" id="master-container">
         
         <section>
-            <h1>Oi, meu amor...</h1>
-            <p class="texto-principal">Hoje fazemos 4 meses, e eu decidi te contar uma história que começou em Gonçalves e não tem data para acabar. Preparei este lugar só nosso para te dizer o quanto você é importante.</p>
-            <button class="btn-next" onclick="next(1)">Nossa História ➔</button>
+            <h1>4 Meses de Nós</h1>
+            <p style="max-width: 500px;">Preparei um lugar especial para te contar o quanto você é importante para mim. Vamos viajar por essa nossa história?</p>
+            <button class="btn-next" onclick="next(1)">Começar ➔</button>
         </section>
 
         <section style="background: #fff0f3;">
-            <p style="letter-spacing: 3px; font-size: 0.7rem; color: var(--primary); margin-bottom: 20px; font-weight: 600;">NOSSA JORNADA EM NÚMEROS</p>
-            <div style="background: white; padding: 40px; border-radius: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.03);">
+            <p style="letter-spacing: 3px; font-size: 0.7rem; color: var(--primary); font-weight: 600; margin-bottom: 15px;">NOSSA JORNADA EM NÚMEROS</p>
+            <div style="background: white; padding: 30px 50px; border-radius: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.03);">
                 <h2 id="batimentos" style="font-size: 3rem; color: var(--text); font-weight: 800;">0</h2>
-                <p style="opacity: 0.6; margin-top: 10px;">vezes meu coração já bateu por você.</p>
+                <p style="opacity: 0.6; margin-top: 5px;">vezes meu coração já bateu por você.</p>
             </div>
-            <button class="btn-next" onclick="next(2)">O que eu sinto ➔</button>
-        </section>
-
-        <section>
-            <h1>Para a mulher mais incrível.</h1>
-            <p class="texto-principal" style="font-style: italic; font-family: 'Playfair Display', serif; font-size: 1.25rem;">
-                "Você é a mulher que mudou meu mundo. Em 120 dias, descobri que sua luz ilumina tudo ao meu redor e me faz querer ser melhor a cada dia. Você não é apenas a mulher da minha vida; você é a minha vida inteira acontecendo agora. Você é única, autêntica e o meu lugar favorito no mundo."
-            </p>
-            <button class="btn-next" onclick="next(3)">Nosso Horizonte ➔</button>
+            <button class="btn-next" onclick="next(2)">Continuar ➔</button>
         </section>
 
         <section class="section-night">
-            <h1>Nossos Sonhos.</h1>
-            <p class="texto-principal">Nosso mapa está apenas começando a ser desenhado. De Itapipoca ao Coliseu, meu destino favorito será sempre segurando a sua mão.</p>
-            
+            <h1 style="color: #5bc0be;">Nossos Próximos Passos</h1>
             <div class="card-futuro">
                 <div style="margin-bottom: 15px;">
                     <strong style="color: #5bc0be;">📍 Agosto de 2026:</strong>
-                    <p style="font-size: 0.95rem; margin-top: 5px;">Nossa viagem para <b>Itapipoca</b>. Mal posso esperar para conhecer suas raízes e ver de perto o lugar que te fez essa mulher incrível.</p>
+                    <p style="font-size: 0.95rem; margin-top: 5px;">Nossa viagem para <b>Itapipoca</b>. Mal posso esperar para conhecer suas raízes e sua família.</p>
                 </div>
                 <div>
                     <strong style="color: #5bc0be;">🇮🇹 2028:</strong>
-                    <p style="font-size: 0.95rem; margin-top: 5px;">Nosso grande sonho internacional. Ver o pôr do sol na <b>Itália</b> brindando ao nosso amor.</p>
+                    <p style="font-size: 0.95rem; margin-top: 5px;">Nosso grande sonho internacional: ver o pôr do sol na <b>Itália</b> brindando ao nosso amor.</p>
                 </div>
             </div>
-            <button class="btn-next" onclick="next(4)" style="background: #5bc0be;">O Final ✨</button>
+            <button class="btn-next" onclick="next(3)" style="background: #5bc0be;">Uma Mensagem Especial ➔</button>
+        </section>
+
+        <section class="sessao-carta">
+            <div class="moldura-carta">
+                <p><strong>Minha Vida,</strong></p><br>
+                <p>Dizem que o mundo tem 8 bilhões de pessoas, mas para mim, a conta sempre foi muito mais simples: existe o mundo antes de você e o mundo depois de você.</p>
+                <p>Desde aquele 22 de novembro, quando o frio de Gonçalves se tornou o cenário do nosso início, eu descobri que a felicidade não é um destino, é o jeito que você sorri para mim no meio de uma conversa boba.</p>
+                <p>Ser incrível, para você, é natural. É o seu jeito de iluminar o ambiente sem fazer esforço. É a sua força que me admira e a sua doçura que me acalma. Nestes 4 meses, eu não apenas me apaixonei por quem você é, mas pela forma como você me faz querer ser alguém melhor.</p>
+                <p>Você não é apenas a mulher da minha vida; você é a minha vida inteira acontecendo agora. Obrigado por me escolher.</p>
+                <p style="margin-top: 15px; text-align: right; font-family: 'Dancing Script'; font-size: 1.5rem; color: var(--primary);">Eu te amo infinitamente! ❤️</p>
+            </div>
+            <button class="btn-next" onclick="next(4)">O Final ✨</button>
         </section>
 
         <section>
-            <h1>Eu Te Amo!</h1>
-            <p class="texto-principal">Este site é um pequeno pedaço de tudo o que sinto. Obrigado por esses 4 meses inesquecíveis.</p>
+            <h1>Feliz 4 Meses!</h1>
+            <p>Obrigado por ser minha parceira de vida.</p>
             <div style="font-family: 'Playfair Display'; font-size: 1.8rem; color: var(--primary); margin: 20px 0;">Para sempre, nós dois. ❤️</div>
-            <button class="btn-next" onclick="finalCelebrate()">Celebrar Nós Dois 🥂</button>
+            <button class="btn-next" onclick="finalCelebrate()">Celebrar Nossa Data 🥂</button>
         </section>
 
     </div>
@@ -99,14 +100,13 @@
     <script>
         let currentStep = 0;
         const container = document.getElementById('master-container');
-        const music = document.getElementById('bg-music');
 
         function next(step) {
             currentStep = step;
             container.style.transform = `translateX(-${step * 100}vw)`;
         }
 
-        // Lógica de Batimentos
+        // Contador de Batimentos
         const inicioData = new Date("2025-11-22T00:00:00").getTime();
         setInterval(() => {
             const agora = new Date().getTime();
@@ -114,11 +114,11 @@
             document.getElementById("batimentos").innerHTML = batidas.toLocaleString('pt-BR');
         }, 1000);
 
-        // Chuva de Corações
+        // Corações
         setInterval(() => {
             const heart = document.createElement("div");
             heart.className = "floating-heart";
-            heart.innerHTML = ["❤️", "💖", "✨", "🌸"][Math.floor(Math.random() * 4)];
+            heart.innerHTML = "❤️";
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.top = "100vh";
             heart.style.fontSize = (Math.random() * 20 + 10) + "px";
@@ -126,12 +126,8 @@
             setTimeout(() => heart.remove(), 4000);
         }, 400);
 
-        function toggleMusic() {
-            if (music.paused) { music.play(); } else { music.pause(); }
-        }
-
         function finalCelebrate() {
-            confetti({ particleCount: 250, spread: 100, origin: { y: 0.6 }, colors: ['#ff4d6d', '#ffffff', '#ffb3c1'] });
+            confetti({ particleCount: 250, spread: 100, origin: { y: 0.6 }, colors: ['#ff4d6d', '#ffffff'] });
         }
     </script>
 </body>
