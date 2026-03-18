@@ -7,7 +7,7 @@ Este repositório foi criado para celebrar nossos **4 meses** juntos. Mais do qu
 ---
 
 ### 🚀 O que você vai encontrar aqui:
-* **Nosso Site:** [[CLIQUE AQUI PARA VER A SURPRESA](https://seuusuario.github.io/seu-repositorio)](https://igorvolpe.github.io/Apresenta-o/)
+* **Nosso Site:** (https://igorvolpe.github.io/Apresenta-o/)
 * **Nossas Memórias:** Algumas fotos e frases que marcaram esse tempo.
 * **Muito Amor:** Em cada commit e em cada tag HTML.
 
