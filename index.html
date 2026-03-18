@@ -38,7 +38,7 @@
         .section-night { background: var(--night) !important; color: white !important; }
         .section-night h1 { color: #5bc0be; }
 
-        .moldura-carta { background: white; padding: 40px; border-radius: 15px; border: 4px double var(--primary); max-width: 700px; text-align: left; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        .moldura-carta { background: white; padding: 40px; border-radius: 15px; border: 4px double var(--primary); max-width: 700px; text-align: left; box-shadow: 0 10px 40px rgba(0,0,0,0.05); overflow-y: auto; max-height: 80vh; }
         .floating-heart { position: absolute; pointer-events: none; animation: floatUp 4s linear infinite; opacity: 0.5; z-index: 1; }
         @keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-110vh); opacity: 0; } }
     </style>
@@ -86,10 +86,13 @@
 
         <section style="background: #fffcf2;">
             <div class="moldura-carta">
-                <p style="font-family: 'Playfair Display'; font-size: 1.3rem; margin-bottom: 15px;"><strong>Minha Vida,</strong></p>
-                <p class="texto-principal">Dizem que o mundo tem 8 bilhões de pessoas, mas para mim, a conta sempre foi muito mais simples: existe o mundo antes de você e o mundo depois de você...</p>
-                <p class="texto-principal">Você não é apenas a mulher da minha vida; você é a minha vida inteira acontecendo agora. Obrigado por me escolher.</p>
-                <p style="margin-top: 20px; text-align: right; font-family: 'Gwendolyn'; font-size: 2.5rem; color: var(--primary);">Eu te amo infinitamente! ❤️</p>
+                <p style="font-family: 'Playfair Display'; font-size: 1.3rem; margin-bottom: 15px;"><strong>Amor,</strong></p>
+                <p class="texto-principal">Dizem que o mundo tem 8 bilhões de pessoas, mas para mim, a conta sempre foi muito mais simples: existe o mundo antes de você e o mundo depois de você.</p>
+                <p class="texto-principal" style="margin-top: 10px;">Desde aquele 22 de novembro, quando o frio de Gonçalves se tornou o cenário do nosso início, eu descobri que a felicidade não é um destino, é o jeito que você sorri para mim no meio de uma conversa boba. Eu já te disse que você é incrível, mas quero que você entenda o que isso significa pelos meus olhos.</p>
+                <p class="texto-principal" style="margin-top: 10px;">Ser incrível, para você, é natural. É o seu jeito de iluminar o ambiente sem fazer esforço. É a sua força que me admira e a sua doçura que me acalma. Nestes 4 meses, eu não apenas me apaixonei por quem você é, mas pela forma como você me faz querer ser alguém melhor.</p>
+                <p class="texto-principal" style="margin-top: 10px;">Nossa história começou nas montanhas de Minas, mas ela não tem fronteiras. Mal posso esperar para desembarcar com você em Itapipoca em agosto, para conhecer o lugar que moldou esse coração gigante que você tem. E, um pouco mais adiante, quero brindar com você sob o sol da Itália, em 2028, lembrando que tudo começou com um 'sim' e uma conexão que nem o tempo, nem a distância, conseguem explicar.</p>
+                <p class="texto-principal" style="margin-top: 10px;">Você não é apenas a mulher da minha vida; você é a minha vida inteira acontecendo agora. Obrigado por me escolher. Eu te amo além das palavras, além dos planos e além de cada batida do meu coração que você viu contar neste site.</p>
+                <p style="margin-top: 20px; text-align: right; font-family: 'Gwendolyn'; font-size: 2.2rem; color: var(--primary);">Feliz 4 meses, minha vida. ❤️</p>
             </div>
             <button class="btn-next" onclick="next(5)">Quase lá... ✨</button>
         </section>
@@ -127,7 +130,6 @@
         const words = ["GONCALVES", "AMOR", "ITAPIPOCA", "ITALIA", "VIDA"];
         let foundWords = [];
         let currentSelection = "";
-        let selectedIndices = [];
 
         const gridContainer = document.getElementById('grid');
         gridData.forEach((letra, i) => {
@@ -164,7 +166,7 @@
             });
         }
 
-        const inicioData = new Date("2025-11-22T00:00:00").getTime();
+        const inicioData = new Date("2024-11-22T00:00:00").getTime();
         setInterval(() => {
             const agora = new Date().getTime();
             const batidas = Math.floor(((agora - inicioData) / (1000 * 60)) * 80);
