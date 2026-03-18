@@ -17,12 +17,25 @@
             overflow: hidden; 
         }
 
+        /* Player de Música Fixo */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            padding: 5px;
+        }
+        .music-player:hover { opacity: 1; }
+
         /* Navegação Horizontal */
         .timeline-wrapper { display: flex; width: 600vw; height: 100vh; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
         
         section { width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px; text-align: center; position: relative; }
 
-        /* Títulos com a nova fonte manuscrita */
         h1 { 
             font-family: 'Gwendolyn', cursive; 
             font-size: clamp(3.5rem, 10vw, 5.5rem); 
@@ -31,16 +44,13 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
         }
 
-        /* Destaque para o título da jornada em números */
         .titulo-numeros {
             font-family: 'Gwendolyn', cursive;
             font-size: clamp(2.5rem, 6vw, 3.5rem);
             color: var(--primary);
             margin-bottom: 15px;
-            text-transform: none; /* Removido uppercase para a fonte manuscrita */
         }
         
-        /* Borda ao redor das frases principais */
         .frase-container {
             border: 2px solid var(--primary);
             padding: 30px;
@@ -58,7 +68,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Estilo da Carta Final com Borda Dupla */
         .sessao-carta { background: #fffcf2 !important; }
         .moldura-carta { 
             background: white; 
@@ -68,7 +77,7 @@
             max-width: 700px; 
             text-align: left; 
             line-height: 1.8;
-            border: 4px double var(--primary); /* Borda clássica dupla */
+            border: 4px double var(--primary);
             position: relative;
         }
 
@@ -110,6 +119,10 @@
 </head>
 <body>
 
+    <div class="music-player">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/303K7a6pI8MvR67V8nAb4Y?utm_source=generator&theme=0" width="250" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
     <div class="timeline-wrapper" id="master-container">
         
         <section>
@@ -149,7 +162,7 @@
                 <p style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 15px;"><strong>Minha Vida,</strong></p>
                 <p class="texto-principal">Dizem que o mundo tem 8 bilhões de pessoas, mas para mim, a conta sempre foi muito mais simples: existe o mundo antes de você e o mundo depois de você.</p>
                 <p class="texto-principal">Desde aquele 22 de novembro, quando o frio de Gonçalves se tornou o cenário do nosso início, eu descobri que a felicidade não é um destino, é o jeito que você sorri para mim no meio de uma conversa boba.</p>
-                <p class="texto-principal">Ser incrível, para você, é natural. É o seu jeito de iluminar o ambiente sem fazer esforço. Es a sua força que me admira e a sua doçura que me acalma. Nestes 4 meses, eu não apenas me apaixonei por quem você é, mas pela forma como você me faz querer ser alguém melhor.</p>
+                <p class="texto-principal">Ser incrível, para você, é natural. É o seu jeito de iluminar o ambiente sem fazer esforço. É a sua força que me admira e a sua doçura que me acalma. Nestes 4 meses, eu não apenas me apaixonei por quem você é, mas pela forma como você me faz querer ser alguém melhor.</p>
                 <p class="texto-principal">Você não é apenas a mulher da minha vida; você é a minha vida inteira acontecendo agora. Obrigado por me escolher.</p>
                 <p style="margin-top: 20px; text-align: right; font-family: 'Gwendolyn'; font-size: 2.5rem; color: var(--primary);">Eu te amo infinitamente! ❤️</p>
             </div>
@@ -176,7 +189,6 @@
             container.style.transform = `translateX(-${step * 100}vw)`;
         }
 
-        // Contador de Batimentos
         const inicioData = new Date("2025-11-22T00:00:00").getTime();
         setInterval(() => {
             const agora = new Date().getTime();
@@ -184,7 +196,6 @@
             document.getElementById("batimentos").innerHTML = batidas.toLocaleString('pt-BR');
         }, 1000);
 
-        // Corações constantes
         setInterval(() => {
             const heart = document.createElement("div");
             heart.className = "floating-heart";
