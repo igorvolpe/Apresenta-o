@@ -3,230 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossos 4 Meses ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&family=Playfair+Display:italic&display=swap" rel="stylesheet">
+    <title>Nossa História ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Inter:wght@300;400;600&family=Playfair+Display:italic,wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --cor-principal: #e63946;
-            --cor-fundo: #fdf0f0;
-            --cor-texto: #1d3557;
-            --cor-noite: #0b132b;
+            --primary: #ff4d6d;
+            --secondary: #c9184a;
+            --bg: #fff5f6;
+            --text: #2b2d42;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--cor-fundo);
-            color: var(--cor-texto);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Animação de Entrada */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-        }
-
-        /* Efeito de Corações Caindo */
-        .coracao-caindo {
-            position: fixed;
-            top: -10%;
-            z-index: 9999;
-            user-select: none;
-            animation: queda linear forwards;
-        }
-
-        @keyframes queda {
-            to { transform: translateY(110vh) rotate(360deg); }
-        }
-
-        .container {
-            max-width: 800px;
-            width: 90%;
-            margin: 50px auto;
+            background: linear-gradient(135deg, #fff5f6 0%, #ffd0d5 100%);
             text-align: center;
-            z-index: 2;
+            position: relative;
         }
 
-        header h1 {
+        .hero h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
-            color: var(--cor-principal);
-            margin-bottom: 5px;
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: var(--primary);
+            margin-bottom: 20px;
         }
 
         #contador {
-            font-size: 1.1rem;
-            background: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            color: var(--cor-principal);
-            font-weight: 600;
-        }
-
-        .carta {
-            background: white;
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            line-height: 1.8;
-            text-align: left;
-        }
-
-        .carta h2 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.5rem;
-            text-align: center;
-            color: var(--cor-principal);
-            margin-top: 0;
-        }
-
-        .poesia {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.2rem;
-            color: #457b9d;
-            border-left: 4px solid #ffb3c1;
-            padding-left: 20px;
-            margin: 30px 0;
-        }
-
-        /* ESTILO MAPA ESTELAR */
-        .mapa-estelar {
-            background: var(--cor-noite);
-            color: #ffffff;
-            padding: 40px 20px;
-            border-radius: 20px;
-            margin-top: 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .estrelas-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 20px);
-            background-size: 50px 50px;
-            opacity: 0.2;
-        }
-
-        .coordenadas {
-            font-size: 0.8rem;
+            font-weight: 300;
             letter-spacing: 2px;
-            color: #5bc0be;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .btn-surpresa {
-            background: var(--cor-principal);
-            color: white;
-            border: none;
-            padding: 15px 40px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin: 30px auto 0;
-            display: block;
-            transition: 0.3s;
-            font-weight: 600;
+            backdrop-filter: blur(5px);
         }
 
-        .btn-surpresa:hover { transform: scale(1.05); background: #c9184a; }
+        /* Seção da Carta */
+        .content-section {
+            max-width: 800px;
+            margin: -100px auto 100px;
+            padding: 60px;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.1);
+            position: relative;
+            z-index: 10;
+        }
 
-        #mensagem-secreta {
-            display: none;
-            margin-top: 20px;
-            background: #fff0f3;
-            padding: 25px;
-            border-radius: 15px;
-            border: 2px dashed var(--cor-principal);
+        .carta-texto {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #4a4e69;
+            font-weight: 300;
+        }
+
+        .highlight {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--text);
             text-align: center;
+            margin: 40px 0;
+            position: relative;
         }
 
-        footer { margin: 50px 0; font-size: 0.8rem; opacity: 0.6; }
+        /* Checklist Estilizada */
+        .milestones {
+            margin: 50px 0;
+            display: grid;
+            gap: 20px;
+        }
+
+        .milestone-card {
+            padding: 20px;
+            background: #fffafa;
+            border-radius: 20px;
+            border-left: 5px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        .milestone-card:hover { transform: translateX(10px); background: #ffe3e8; }
+
+        /* Botão Minimalista */
+        .btn-container { text-align: center; margin-top: 40px; }
+        
+        .btn-premium {
+            background: var(--text);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 100px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.4s;
+            letter-spacing: 1px;
+        }
+
+        .btn-premium:hover {
+            background: var(--primary);
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+            transform: translateY(-3px);
+        }
+
+        #surpresa-box {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 25px;
+            border: 1px solid #eee;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Partículas de Coração */
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: moveHeart 4s linear forwards;
+        }
+
+        @keyframes moveHeart {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        footer { text-align: center; padding-bottom: 50px; opacity: 0.4; font-size: 0.8rem; }
+
     </style>
 </head>
 <body>
 
+    <section class="hero">
+        <h1 class="reveal">Quatro Meses.</h1>
+        <div id="contador" class="reveal">Carregando nossa eternidade...</div>
+        <div style="margin-top: 20px; opacity: 0.5;">↓ role para ler</div>
+    </section>
+
     <div class="container">
-        <header>
-            <h1>Nossos 4 Meses</h1>
-            <div id="contador">Calculando nossa história...</div>
-        </header>
+        <main class="content-section reveal">
+            <div class="carta-texto">
+                <p><strong>Minha Vida,</strong></p>
+                <br>
+                <p>Eles dizem que o tempo é uma medida comum, mas eu aprendi que, ao seu lado, o tempo é um privilégio. Hoje celebramos 120 dias desde aquele 22 de novembro em Gonçalves, e eu ainda sinto o mesmo frio na barriga de quando tudo começou.</p>
+                
+                <div class="highlight">"Você é o meu 'sim' favorito em um mundo de incertezas."</div>
+                
+                <p>Não precisei de fotos para ilustrar este site, pois cada risada sua, cada olhar e cada momento de silêncio confortável estão projetados na minha mente com uma nitidez que nenhuma câmera conseguiria captar.</p>
 
-        <main class="carta">
-            <h2>Minha Vida,</h2>
-            <p>Eles dizem que quatro meses é pouco tempo, mas para mim parece uma vida inteira de aprendizado e felicidade. Desde aquele 22 de novembro em Gonçalves, meu mundo ganhou uma cor que eu nem sabia que existia.</p>
-            
-            <p>Nesse tempo, descobri que seu sorriso é meu combustível e que o melhor lugar do mundo é qualquer um, desde que você esteja lá. Não preciso de fotos aqui para lembrar de cada detalhe seu, porque guardo todos gravados na alma.</p>
+                <div class="milestones">
+                    <div class="milestone-card"><span>✨</span> <div><strong>O Início:</strong> Gonçalves, MG (22/11/25)</div></div>
+                    <div class="milestone-card"><span>❤️</span> <div><strong>A Descoberta:</strong> Quando percebi que era você.</div></div>
+                    <div class="milestone-card"><span>🚀</span> <div><strong>O Futuro:</strong> Tudo o que ainda vamos construir.</div></div>
+                </div>
 
-            <div class="poesia">
-                "O amor não é sobre o tempo que passa, mas sobre como cada segundo se torna eterno quando estamos juntos."
-            </div>
+                <p>Obrigado por ser minha paz e minha aventura, tudo ao mesmo tempo. Eu te amo muito!</p>
 
-            <div class="mapa-estelar">
-                <div class="estrelas-bg"></div>
-                <span class="coordenadas">GONÇALVES, MG • 22.5931° S, 45.8572° W</span>
-                <h3 style="font-family: 'Dancing Script', cursive; font-size: 2rem; margin: 10px 0; position: relative;">O Céu do Nosso Início</h3>
-                <p style="font-size: 0.9rem; position: relative; font-style: italic;">
-                    "Assim estavam as estrelas no momento em que decidimos caminhar juntos."
-                </p>
-                <div style="font-size: 3rem; margin: 20px 0; position: relative;">✨🌌✨</div>
-            </div>
-
-            <p style="margin-top: 30px;">Obrigado por ser minha parceira e por construir comigo essa história tão linda. Este site é um pequeno gesto para dizer que eu presto atenção em nós e que cada dia ao seu lado é um presente único.</p>
-            
-            <p><strong>Eu te amo infinitamente! ❤️</strong></p>
-
-            <button class="btn-surpresa" onclick="revelar()">Abrir Surpresa 🎁</button>
-            
-            <div id="mensagem-secreta">
-                <h3 style="margin-top:0; color: var(--cor-principal);">🎫 VALE UM JANTAR ROMÂNTICO</h3>
-                <p>Este cupom garante a você um jantar no seu lugar favorito para celebrarmos nossa data!</p>
-                <small>Válido para o próximo final de semana.</small>
+                <div class="btn-container">
+                    <button class="btn-premium" onclick="showSurprise()">REVELAR PRESENTE 🎁</button>
+                    <div id="surpresa-box">
+                        <h3 style="margin-bottom: 10px; color: var(--primary);">🎫 VALE-EXPERIÊNCIA PREMIUM</h3>
+                        <p>Um jantar gastronômico completo, em um lugar que você escolher, para celebrarmos nossa jornada.</p>
+                    </div>
+                </div>
             </div>
         </main>
-
-        <footer>Feito com ❤️ por [Seu Nome]</footer>
     </div>
 
+    <footer>Criado com dedicação por [Seu Nome] • 2026</footer>
+
     <script>
-        // 1. CHUVA DE CORAÇÕES
-        function criarCoracao() {
-            const coracoes = ['❤️', '💖', '💕', '💗', '✨'];
-            const coracao = document.createElement("div");
-            coracao.className = "coracao-caindo";
-            coracao.innerHTML = coracoes[Math.floor(Math.random() * coracoes.length)];
-            coracao.style.left = Math.random() * 100 + "vw";
-            coracao.style.fontSize = Math.random() * 20 + 10 + "px";
-            coracao.style.animationDuration = Math.random() * 3 + 2 + "s";
-            document.body.appendChild(coracao);
-            setTimeout(() => { coracao.remove(); }, 5000);
+        // Efeito de Revelação no Scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    reveals[i].classList.add("active");
+                }
+            }
         }
-        setInterval(criarCoracao, 400);
+        window.addEventListener("scroll", reveal);
+        window.onload = reveal;
 
-        // 2. CONTADOR DE TEMPO REAL
-        const dataInicio = new Date("2025-11-22T00:00:00").getTime();
-        function atualizarContador() {
-            const agora = new Date().getTime();
-            const diff = agora - dataInicio;
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((diff % (1000 * 60)) / 1000);
-            document.getElementById("contador").innerHTML = 
-                `Juntos há ${dias} dias, ${horas}h ${minutos}m e ${segundos}s`;
+        // Contador de Tempo Profissional
+        const startDate = new Date("2025-11-22T00:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = now - startDate;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("contador").innerHTML = `${d} dias • ${h}h ${m}m ${s}s de nós`;
+        }, 1000);
+
+        // Chuva de Corações Elegante
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart-particle";
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = "100vh";
+            heart.style.fontSize = (Math.random() * 10 + 10) + "px";
+            heart.style.opacity = Math.random() * 0.5 + 0.2;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
         }
-        setInterval(atualizarContador, 1000);
+        setInterval(createHeart, 500);
 
-        // 3. FUNÇÃO DO BOTÃO
-        function revelar() {
-            const msg = document.getElementById("mensagem-secreta");
-            msg.style.display = "block";
+        function showSurprise() {
+            const box = document.getElementById("surpresa-box");
+            box.style.display = "block";
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     </script>
