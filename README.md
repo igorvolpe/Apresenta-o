@@ -1,6 +1,6 @@
 # ❤️ Nossa História ❤️
 
-Bem-vinda ao nosso cantinho digital, **Livia**! 🌹
+Bem-vinda ao nosso cantinho digital, **amorzão**! 🌹
 
 Este repositório foi criado para celebrar nossos **4 meses** juntos. Mais do que linhas de código, aqui tem um pouquinho de tudo o que vivemos desde o dia 22 de novembro.
 
