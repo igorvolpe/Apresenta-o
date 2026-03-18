@@ -127,4 +127,108 @@
             border: none;
             padding: 15px 40px;
             border-radius: 50px;
-            font
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 30px auto 0;
+            display: block;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-surpresa:hover { transform: scale(1.05); background: #c9184a; }
+
+        #mensagem-secreta {
+            display: none;
+            margin-top: 20px;
+            background: #fff0f3;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px dashed var(--cor-principal);
+            text-align: center;
+        }
+
+        footer { margin: 50px 0; font-size: 0.8rem; opacity: 0.6; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Nossos 4 Meses</h1>
+            <div id="contador">Calculando nossa história...</div>
+        </header>
+
+        <main class="carta">
+            <h2>Minha Vida,</h2>
+            <p>Eles dizem que quatro meses é pouco tempo, mas para mim parece uma vida inteira de aprendizado e felicidade. Desde aquele 22 de novembro em Gonçalves, meu mundo ganhou uma cor que eu nem sabia que existia.</p>
+            
+            <p>Nesse tempo, descobri que seu sorriso é meu combustível e que o melhor lugar do mundo é qualquer um, desde que você esteja lá. Não preciso de fotos aqui para lembrar de cada detalhe seu, porque guardo todos gravados na alma.</p>
+
+            <div class="poesia">
+                "O amor não é sobre o tempo que passa, mas sobre como cada segundo se torna eterno quando estamos juntos."
+            </div>
+
+            <div class="mapa-estelar">
+                <div class="estrelas-bg"></div>
+                <span class="coordenadas">GONÇALVES, MG • 22.5931° S, 45.8572° W</span>
+                <h3 style="font-family: 'Dancing Script', cursive; font-size: 2rem; margin: 10px 0; position: relative;">O Céu do Nosso Início</h3>
+                <p style="font-size: 0.9rem; position: relative; font-style: italic;">
+                    "Assim estavam as estrelas no momento em que decidimos caminhar juntos."
+                </p>
+                <div style="font-size: 3rem; margin: 20px 0; position: relative;">✨🌌✨</div>
+            </div>
+
+            <p style="margin-top: 30px;">Obrigado por ser minha parceira e por construir comigo essa história tão linda. Este site é um pequeno gesto para dizer que eu presto atenção em nós e que cada dia ao seu lado é um presente único.</p>
+            
+            <p><strong>Eu te amo infinitamente! ❤️</strong></p>
+
+            <button class="btn-surpresa" onclick="revelar()">Abrir Surpresa 🎁</button>
+            
+            <div id="mensagem-secreta">
+                <h3 style="margin-top:0; color: var(--cor-principal);">🎫 VALE UM JANTAR ROMÂNTICO</h3>
+                <p>Este cupom garante a você um jantar no seu lugar favorito para celebrarmos nossa data!</p>
+                <small>Válido para o próximo final de semana.</small>
+            </div>
+        </main>
+
+        <footer>Feito com ❤️ por [Seu Nome]</footer>
+    </div>
+
+    <script>
+        // 1. CHUVA DE CORAÇÕES
+        function criarCoracao() {
+            const coracoes = ['❤️', '💖', '💕', '💗', '✨'];
+            const coracao = document.createElement("div");
+            coracao.className = "coracao-caindo";
+            coracao.innerHTML = coracoes[Math.floor(Math.random() * coracoes.length)];
+            coracao.style.left = Math.random() * 100 + "vw";
+            coracao.style.fontSize = Math.random() * 20 + 10 + "px";
+            coracao.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(coracao);
+            setTimeout(() => { coracao.remove(); }, 5000);
+        }
+        setInterval(criarCoracao, 400);
+
+        // 2. CONTADOR DE TEMPO REAL
+        const dataInicio = new Date("2025-11-22T00:00:00").getTime();
+        function atualizarContador() {
+            const agora = new Date().getTime();
+            const diff = agora - dataInicio;
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("contador").innerHTML = 
+                `Juntos há ${dias} dias, ${horas}h ${minutos}m e ${segundos}s`;
+        }
+        setInterval(atualizarContador, 1000);
+
+        // 3. FUNÇÃO DO BOTÃO
+        function revelar() {
+            const msg = document.getElementById("mensagem-secreta");
+            msg.style.display = "block";
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
