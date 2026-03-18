@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos 4 Meses ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffebee;
+            color: #d32f2f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        header {
+            margin-top: 50px;
+            padding: 20px;
+        }
+        .heart {
+            color: #e91e63;
+            font-size: 50px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .photos {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .photo-card {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 200px;
+        }
+        .photo-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .message {
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="heart">❤️</div>
+        <h1>Feliz 4 Meses, [Nome dela]!</h1>
+    </header>
+
+    <div class="message">
+        <p>Desde o dia 22 de novembro, minha vida ficou muito mais colorida.</p>
+        <p>Esses 120 dias foram os melhores que eu já tive. Obrigado por ser minha parceira, minha melhor amiga e meu amor.</p>
+        <p><strong>"O amor não é sobre quantos dias estamos juntos, mas sobre o quanto nos amamos em cada um deles."</strong></p>
+    </div>
+
+    <div class="photos">
+        <div class="photo-card">
+            <img src="foto1.jpg" alt="Nosso começo">
+            <p>O começo de tudo...</p>
+        </div>
+        <div class="photo-card">
+            <img src="foto2.jpg" alt="Momento especial">
+            <p>Amo esse seu sorriso!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Feito com ❤️ por [Seu Nome]</p>
+    </footer>
+
+</body>
+</html>
