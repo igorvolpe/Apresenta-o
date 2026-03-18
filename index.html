@@ -8,20 +8,19 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root { --primary: #ff4d6d; --bg: #fff5f6; --text: #2b2d42; }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
-            overflow: hidden; /* Trava o scroll vertical para focar na horizontal */
+            overflow: hidden; 
         }
 
-        /* Container que desliza lateralmente */
+        /* Container de Deslize Lateral */
         .timeline-wrapper {
             display: flex;
-            width: 500vw; /* 5 seções de 100vw cada */
+            width: 500vw; 
             height: 100vh;
             transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
         }
@@ -38,13 +37,11 @@
             position: relative;
         }
 
-        /* Estilo dos Títulos */
-        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(3rem, 10vw, 5rem); color: var(--primary); margin-bottom: 20px; }
-        p { max-width: 600px; font-size: 1.2rem; line-height: 1.6; font-weight: 300; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(2.5rem, 8vw, 5rem); color: var(--primary); margin-bottom: 20px; }
+        p { max-width: 600px; font-size: 1.1rem; line-height: 1.6; font-weight: 300; }
+        .highlight { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 20px 0; color: var(--text); }
 
-        .highlight { font-family: 'Playfair Display', serif; font-size: 2rem; margin: 20px 0; color: var(--text); }
-
-        /* Botões de Navegação */
+        /* Botões */
         .nav-btn {
             margin-top: 30px;
             padding: 15px 40px;
@@ -57,41 +54,39 @@
             transition: 0.3s;
             z-index: 100;
         }
-        .nav-btn:hover { background: var(--primary); transform: scale(1.1); box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3); }
+        .nav-btn:hover { background: var(--primary); transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3); }
 
-        /* Contador de Batidas Estilizado */
+        /* Cards e Status */
         .stat-card {
             background: white;
-            padding: 20px 40px;
-            border-radius: 20px;
+            padding: 25px 40px;
+            border-radius: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             margin-top: 20px;
         }
 
-        /* Partículas de Coração */
-        .heart-particle {
-            position: absolute;
-            pointer-events: none;
-            animation: floatUp 4s linear infinite;
-        }
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0); opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        #final-gift {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(255, 77, 109, 0.15);
+            border: 1px solid #ffe3e8;
+            max-width: 550px;
+            text-align: left;
+            animation: fadeInUp 1s ease forwards;
         }
 
-        /* Progress Bar */
-        .progress-bar {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 1000;
-        }
-        .dot { width: 12px; height: 12px; border-radius: 50%; background: #ddd; transition: 0.3s; }
-        .dot.active { background: var(--primary); transform: scale(1.5); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Decoração */
+        .heart-particle { position: absolute; pointer-events: none; animation: floatUp 4s linear infinite; z-index: 1; }
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0); opacity: 1; } 100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
+
+        .progress-bar { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 1000; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: 0.3s; }
+        .dot.active { background: var(--primary); transform: scale(1.4); }
     </style>
 </head>
 <body>
@@ -107,46 +102,60 @@
     <div class="timeline-wrapper" id="master-container">
         
         <section>
-            <h1>Nossa História</h1>
+            <h1>Nossa Jornada</h1>
             <p>Prepare-se para uma viagem pelos nossos melhores 4 meses...</p>
             <button class="nav-btn" onclick="next(1)">Começar a Jornada ➔</button>
         </section>
 
         <section style="background: #fff0f3;">
-            <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 10px;">Onde tudo começou</p>
-            <div class="highlight">Gonçalves, 22 de Novembro.</div>
-            <p>Naquelas montanhas de Minas, o universo conspirou a nosso favor. Foi o dia em que meu mundo ganhou um novo sentido.</p>
+            <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; margin-bottom: 10px; color: var(--primary);">Onde tudo começou</p>
+            <div class="highlight">Gonçalves, MG • 22 de Novembro</div>
+            <p>Naquelas montanhas, entre o frio e o seu sorriso, o universo decidiu que era a hora de começarmos a caminhar juntos.</p>
             <button class="nav-btn" onclick="next(2)">Continuar... ➔</button>
         </section>
 
         <section>
             <h1>Cada Segundo Conta</h1>
             <div class="stat-card">
-                <p style="font-size: 0.9rem; color: #888;">Meu coração já bateu por você aproximadamente</p>
+                <p style="font-size: 0.8rem; color: #888; text-transform: uppercase;">Meu coração já bateu por você aprox.</p>
                 <div id="batimentos" style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">0</div>
-                <p style="font-size: 0.9rem; color: #888;">vezes desde o nosso primeiro "sim".</p>
+                <p style="font-size: 0.8rem; color: #888;">vezes desde o nosso primeiro "sim".</p>
             </div>
-            <p style="margin-top: 20px;">E a cada batida, eu tenho mais certeza de que é você.</p>
+            <p style="margin-top: 20px;">E o mais incrível é que ele ainda acelera toda vez que te vejo.</p>
             <button class="nav-btn" onclick="next(3)">O que eu sinto ➔</button>
         </section>
 
         <section style="background: var(--text); color: white;">
             <h1 style="color: white;">Por que você?</h1>
-            <p style="font-style: italic; font-size: 1.4rem;">"Porque você é a única pessoa que consegue me fazer sorrir apenas com um olhar. Porque sua alma brilha e ilumina tudo ao meu redor."</p>
-            <p style="margin-top: 20px; opacity: 0.8;">Você é especial por ser exatamente quem você é: autêntica, linda e o amor da minha vida.</p>
-            <button class="nav-btn" onclick="next(4)" style="background: var(--primary);">O Gran Finale ➔</button>
+            <p style="font-style: italic; font-size: 1.3rem; line-height: 1.8;">"Porque você é a única pessoa que consegue me fazer sorrir apenas com um olhar. Sua essência ilumina tudo ao meu redor e me faz querer ser melhor a cada dia."</p>
+            <button class="nav-btn" onclick="next(4)" style="background: var(--primary);">Nosso Futuro ➔</button>
         </section>
 
         <section>
-            <h1>Feliz 4 Meses!</h1>
-            <p>Obrigado por ser minha parceira de vida. Este é apenas o começo da nossa eternidade.</p>
-            <div class="highlight" style="color: var(--primary);">Eu te amo infinitamente! ❤️</div>
+            <h1>Nossos Próximos Passos</h1>
+            <p>O melhor de celebrar 4 meses é saber que o nosso mapa ainda tem muitos destinos incríveis para carimbar.</p>
             
-            <button class="nav-btn" onclick="celebrar()">Clique aqui para o seu presente 🎁</button>
-            <div id="final-gift" style="display:none; margin-top: 20px; padding: 20px; border: 2px dashed var(--primary); border-radius: 20px;">
-                <h3>🎫 VALE UM JANTAR INESQUECÍVEL</h3>
-                <p>Eu, você e seu lugar favorito. Feliz data!</p>
+            <div id="final-gift">
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 20px; text-align: center;">O Que Vem Por Aí:</h3>
+                
+                <div style="margin-bottom: 15px;">
+                    <strong style="color: var(--primary);">📍 Agosto de 2026:</strong>
+                    <p style="font-size: 0.95rem; margin-top: 3px;">Nossa viagem para <b>Itapipoca</b>. Mal posso esperar para conhecer suas raízes e sua família.</p>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <strong style="color: var(--primary);">🇮🇹 2028:</strong>
+                    <p style="font-size: 0.95rem; margin-top: 3px;">Nosso grande sonho internacional. Ver o pôr do sol na <b>Itália</b> brindando ao nosso amor.</p>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+                
+                <p style="font-size: 1rem; color: var(--text); font-style: italic; text-align: center;">
+                    "Prometo estar ao seu lado em cada um desses destinos. Eu te amo infinitamente! ❤️"
+                </p>
             </div>
+            
+            <button class="nav-btn" id="btn-final" onclick="celebrar()" style="background: var(--primary);">Ver nosso horizonte ➔</button>
         </section>
 
     </div>
@@ -156,32 +165,22 @@
         const container = document.getElementById('master-container');
         const dots = document.querySelectorAll('.dot');
 
-        // Função para navegar entre as seções
         function next(step) {
             currentStep = step;
             container.style.transform = `translateX(-${step * 100}vw)`;
-            
-            // Atualiza os pontinhos de progresso
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === step);
-            });
-
-            // Se for a seção do final, joga confetes automáticos
-            if(step === 4) {
-                setTimeout(celebrar, 500);
-            }
+            dots.forEach((dot, index) => dot.classList.toggle('active', index === step));
+            if(step === 4) setTimeout(celebrar, 500);
         }
 
-        // Contador de Batimentos (80 bpm)
+        // Batimentos do Coração (base 80bpm)
         const inicio = new Date("2025-11-22T00:00:00").getTime();
         setInterval(() => {
             const agora = new Date().getTime();
             const batidas = Math.floor(((agora - inicio) / (1000 * 60)) * 80);
-            const el = document.getElementById("batimentos");
-            if(el) el.innerHTML = batidas.toLocaleString('pt-BR');
+            document.getElementById("batimentos").innerHTML = batidas.toLocaleString('pt-BR');
         }, 1000);
 
-        // Chuva de Corações Constante
+        // Chuva de Corações
         function createHeart() {
             const heart = document.createElement("div");
             heart.className = "heart-particle";
@@ -192,18 +191,17 @@
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 4000);
         }
-        setInterval(createHeart, 300);
+        setInterval(createHeart, 350);
 
-        // Efeito de Confetes Final
         function celebrar() {
             confetti({
-                particleCount: 200,
-                spread: 90,
+                particleCount: 150,
+                spread: 70,
                 origin: { y: 0.6 },
                 colors: ['#ff4d6d', '#ffffff', '#ffb3c1']
             });
-            const gift = document.getElementById('final-gift');
-            if(gift) gift.style.display = 'block';
+            document.getElementById('final-gift').style.display = 'block';
+            document.getElementById('btn-final').style.display = 'none';
         }
     </script>
 </body>
