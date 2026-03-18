@@ -3,87 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossos 4 Meses ❤️</title>
+    <title>Nossos 4 Meses de Amor ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --cor-principal: #ff4d6d;
+            --cor-fundo: #fff0f3;
+        }
+
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #ffebee;
-            color: #d32f2f;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cor-fundo);
+            color: #590d22;
+            overflow-x: hidden;
+        }
+
+        header {
+            height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
+            background: linear-gradient(rgba(255, 77, 109, 0.2), rgba(255, 77, 109, 0.2)), url('https://www.transparenttextures.com/patterns/cubes.png');
             text-align: center;
         }
-        header {
-            margin-top: 50px;
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin: 0;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -50px auto 50px auto;
             padding: 20px;
         }
-        .heart {
-            color: #e91e63;
-            font-size: 50px;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        .photos {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 30px 0;
-        }
-        .photo-card {
+
+        .card {
             background: white;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 200px;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            line-height: 1.8;
+            text-align: center;
         }
-        .photo-card img {
+
+        /* GALERIA DE FOTOS */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .foto-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            aspect-ratio: 1 / 1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .foto-container:hover {
+            transform: scale(1.05);
+        }
+
+        .foto-container img {
             width: 100%;
-            border-radius: 5px;
+            height: 100%;
+            object-fit: cover;
         }
-        .message {
-            max-width: 600px;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            margin: 20px;
-            line-height: 1.6;
+
+        .legenda {
+            position: absolute;
+            bottom: 0;
+            background: rgba(255, 77, 109, 0.8);
+            color: white;
+            width: 100%;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="heart">❤️</div>
-        <h1>Feliz 4 Meses, [Nome dela]!</h1>
+        <h1>4 Meses de Nós Dois</h1>
+        <p style="font-size: 1.2rem;">22 de Novembro ➔ 22 de Março</p>
     </header>
 
-    <div class="message">
-        <p>Desde o dia 22 de novembro, minha vida ficou muito mais colorida.</p>
-        <p>Esses 120 dias foram os melhores que eu já tive. Obrigado por ser minha parceira, minha melhor amiga e meu amor.</p>
-        <p><strong>"O amor não é sobre quantos dias estamos juntos, mas sobre o quanto nos amamos em cada um deles."</strong></p>
-    </div>
+    <div class="container">
+        <div class="card">
+            <h2>Minha [Nome dela],</h2>
+            <p>O tempo voa quando estou ao seu lado. Estes 4 meses (ou 120 dias, ou 2.880 horas!) foram os mais felizes que já vivi. Cada detalhe seu me faz ter certeza de que quero muitos outros "dia 22" com você.</p>
+            
+            <div class="galeria">
+                <div class="foto-container">
+                    <img src="foto1.jpg" alt="Nossa primeira foto">
+                    <div class="legenda">Onde tudo começou...</div>
+                </div>
 
-    <div class="photos">
-        <div class="photo-card">
-            <img src="foto1.jpg" alt="Nosso começo">
-            <p>O começo de tudo...</p>
-        </div>
-        <div class="photo-card">
-            <img src="foto2.jpg" alt="Momento especial">
-            <p>Amo esse seu sorriso!</p>
+                <div class="foto-container">
+                    <img src="foto2.jpg" alt="Momento engraçado">
+                    <div class="legenda">Amo nossas risadas!</div>
+                </div>
+
+                <div class="foto-container">
+                    <img src="foto3.jpg" alt="Viagem ou Encontro">
+                    <div class="legenda">Um dia inesquecível.</div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <footer>
-        <p>Feito com ❤️ por [Seu Nome]</p>
-    </footer>
 
 </body>
 </html>
