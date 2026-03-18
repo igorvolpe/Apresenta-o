@@ -17,19 +17,31 @@
             overflow: hidden; 
         }
 
-        /* Player de Música Fixo */
-        .music-player {
+        /* Botão de Música Flutuante */
+        .music-btn {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1000;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 12px;
-            padding: 5px;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.2);
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid var(--primary);
+            transition: 0.3s;
         }
-        .music-player:hover { opacity: 1; }
+        .music-btn:hover {
+            transform: scale(1.05);
+            background: var(--primary);
+            color: white;
+        }
 
         /* Navegação Horizontal */
         .timeline-wrapper { display: flex; width: 600vw; height: 100vh; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
@@ -119,9 +131,9 @@
 </head>
 <body>
 
-    <div class="music-player">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/303K7a6pI8MvR67V8nAb4Y?utm_source=generator&theme=0" width="250" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
+    <a href="https://open.spotify.com/track/478YyGqK9j9XF7G9vKxR7a" target="_blank" class="music-btn">
+        <span>🎵 Play: Lisboa</span>
+    </a>
 
     <div class="timeline-wrapper" id="master-container">
         
