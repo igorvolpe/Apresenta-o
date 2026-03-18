@@ -1,6 +1,6 @@
 # ❤️ Nossa História em Código
 
-Bem-vinda ao nosso cantinho digital, **[Livia]**! 🌹
+Bem-vinda ao nosso cantinho digital, **Livia**! 🌹
 
 Este repositório foi criado para celebrar nossos **4 meses** juntos. Mais do que linhas de código, aqui tem um pouquinho de tudo o que vivemos desde o dia 22 de novembro.
 
@@ -23,4 +23,4 @@ Este repositório foi criado para celebrar nossos **4 meses** juntos. Mais do qu
 > "De todos os repositórios do mundo, o seu coração é o meu favorito para dar 'push'."
 
 Com amor,  
-**[Igor Volpe]** 👩‍💻👨‍💻
+**Igor Volpe** 👩‍💻👨‍💻
