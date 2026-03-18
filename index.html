@@ -3,245 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossa História ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Inter:wght@300;400;600&family=Playfair+Display:italic,wght@700&display=swap" rel="stylesheet">
+    <title>Nossa Jornada ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:italic,wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
-        :root {
-            --primary: #ff4d6d;
-            --secondary: #c9184a;
-            --bg: #fff5f6;
-            --text: #2b2d42;
-        }
-
+        :root { --primary: #ff4d6d; --bg: #fff5f6; --text: #2b2d42; }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            overflow: hidden; /* Trava o scroll vertical para focar na horizontal */
         }
 
-        /* Animação de Entrada */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* Container que desliza lateralmente */
+        .timeline-wrapper {
+            display: flex;
+            width: 500vw; /* 5 seções de 100vw cada */
+            height: 100vh;
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
 
-        /* Hero Section */
-        .hero {
+        section {
+            width: 100vw;
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #fff5f6 0%, #ffd0d5 100%);
+            padding: 40px;
             text-align: center;
             position: relative;
         }
 
-        .hero h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(3rem, 10vw, 6rem);
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
+        /* Estilo dos Títulos */
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(3rem, 10vw, 5rem); color: var(--primary); margin-bottom: 20px; }
+        p { max-width: 600px; font-size: 1.2rem; line-height: 1.6; font-weight: 300; }
 
-        #contador {
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            color: var(--secondary);
-            background: rgba(255, 255, 255, 0.5);
-            padding: 10px 20px;
+        .highlight { font-family: 'Playfair Display', serif; font-size: 2rem; margin: 20px 0; color: var(--text); }
+
+        /* Botões de Navegação */
+        .nav-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
             border-radius: 50px;
-            backdrop-filter: blur(5px);
-        }
-
-        /* Seção da Carta */
-        .content-section {
-            max-width: 800px;
-            margin: -100px auto 100px;
-            padding: 60px;
-            background: white;
-            border-radius: 40px;
-            box-shadow: 0 20px 50px rgba(255, 77, 109, 0.1);
-            position: relative;
-            z-index: 10;
-        }
-
-        .carta-texto {
-            font-size: 1.15rem;
-            line-height: 2;
-            color: #4a4e69;
-            font-weight: 300;
-        }
-
-        .highlight {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--text);
-            text-align: center;
-            margin: 40px 0;
-            position: relative;
-        }
-
-        /* Checklist Estilizada */
-        .milestones {
-            margin: 50px 0;
-            display: grid;
-            gap: 20px;
-        }
-
-        .milestone-card {
-            padding: 20px;
-            background: #fffafa;
-            border-radius: 20px;
-            border-left: 5px solid var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: 0.3s;
-        }
-
-        .milestone-card:hover { transform: translateX(10px); background: #ffe3e8; }
-
-        /* Botão Minimalista */
-        .btn-container { text-align: center; margin-top: 40px; }
-        
-        .btn-premium {
+            border: none;
             background: var(--text);
             color: white;
-            padding: 18px 45px;
-            border-radius: 100px;
-            border: none;
-            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.4s;
-            letter-spacing: 1px;
+            transition: 0.3s;
+            z-index: 100;
         }
+        .nav-btn:hover { background: var(--primary); transform: scale(1.1); box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3); }
 
-        .btn-premium:hover {
-            background: var(--primary);
-            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
-            transform: translateY(-3px);
+        /* Contador de Batidas Estilizado */
+        .stat-card {
+            background: white;
+            padding: 20px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-top: 20px;
         }
-
-        #surpresa-box {
-            display: none;
-            margin-top: 30px;
-            padding: 30px;
-            background: #f8f9fa;
-            border-radius: 25px;
-            border: 1px solid #eee;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* Partículas de Coração */
         .heart-particle {
-            position: fixed;
+            position: absolute;
             pointer-events: none;
-            z-index: 1;
-            animation: moveHeart 4s linear forwards;
+            animation: floatUp 4s linear infinite;
         }
-
-        @keyframes moveHeart {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
             100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
 
-        footer { text-align: center; padding-bottom: 50px; opacity: 0.4; font-size: 0.8rem; }
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #ddd; transition: 0.3s; }
+        .dot.active { background: var(--primary); transform: scale(1.5); }
 
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <h1 class="reveal">Quatro Meses.</h1>
-        <div id="contador" class="reveal">Carregando nossa eternidade...</div>
-        <div style="margin-top: 20px; opacity: 0.5;">↓ role para ler</div>
-    </section>
-
-    <div class="container">
-        <main class="content-section reveal">
-            <div class="carta-texto">
-                <p><strong>Minha Vida,</strong></p>
-                <br>
-                <p>Eles dizem que o tempo é uma medida comum, mas eu aprendi que, ao seu lado, o tempo é um privilégio. Hoje celebramos 120 dias desde aquele 22 de novembro em Gonçalves, e eu ainda sinto o mesmo frio na barriga de quando tudo começou.</p>
-                
-                <div class="highlight">"Você é o meu 'sim' favorito em um mundo de incertezas."</div>
-                
-                <p>Não precisei de fotos para ilustrar este site, pois cada risada sua, cada olhar e cada momento de silêncio confortável estão projetados na minha mente com uma nitidez que nenhuma câmera conseguiria captar.</p>
-
-                <div class="milestones">
-                    <div class="milestone-card"><span>✨</span> <div><strong>O Início:</strong> Gonçalves, MG (22/11/25)</div></div>
-                    <div class="milestone-card"><span>❤️</span> <div><strong>A Descoberta:</strong> Quando percebi que era você.</div></div>
-                    <div class="milestone-card"><span>🚀</span> <div><strong>O Futuro:</strong> Tudo o que ainda vamos construir.</div></div>
-                </div>
-
-                <p>Obrigado por ser minha paz e minha aventura, tudo ao mesmo tempo. Eu te amo muito!</p>
-
-                <div class="btn-container">
-                    <button class="btn-premium" onclick="showSurprise()">REVELAR PRESENTE 🎁</button>
-                    <div id="surpresa-box">
-                        <h3 style="margin-bottom: 10px; color: var(--primary);">🎫 VALE-EXPERIÊNCIA PREMIUM</h3>
-                        <p>Um jantar gastronômico completo, em um lugar que você escolher, para celebrarmos nossa jornada.</p>
-                    </div>
-                </div>
-            </div>
-        </main>
+    <div class="progress-bar" id="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
     </div>
 
-    <footer>Criado com dedicação por [Seu Nome] • 2026</footer>
+    <div class="timeline-wrapper" id="master-container">
+        
+        <section>
+            <h1>Nossa História</h1>
+            <p>Prepare-se para uma viagem pelos nossos melhores 4 meses...</p>
+            <button class="nav-btn" onclick="next(1)">Começar a Jornada ➔</button>
+        </section>
+
+        <section style="background: #fff0f3;">
+            <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 10px;">Onde tudo começou</p>
+            <div class="highlight">Gonçalves, 22 de Novembro.</div>
+            <p>Naquelas montanhas de Minas, o universo conspirou a nosso favor. Foi o dia em que meu mundo ganhou um novo sentido.</p>
+            <button class="nav-btn" onclick="next(2)">Continuar... ➔</button>
+        </section>
+
+        <section>
+            <h1>Cada Segundo Conta</h1>
+            <div class="stat-card">
+                <p style="font-size: 0.9rem; color: #888;">Meu coração já bateu por você aproximadamente</p>
+                <div id="batimentos" style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">0</div>
+                <p style="font-size: 0.9rem; color: #888;">vezes desde o nosso primeiro "sim".</p>
+            </div>
+            <p style="margin-top: 20px;">E a cada batida, eu tenho mais certeza de que é você.</p>
+            <button class="nav-btn" onclick="next(3)">O que eu sinto ➔</button>
+        </section>
+
+        <section style="background: var(--text); color: white;">
+            <h1 style="color: white;">Por que você?</h1>
+            <p style="font-style: italic; font-size: 1.4rem;">"Porque você é a única pessoa que consegue me fazer sorrir apenas com um olhar. Porque sua alma brilha e ilumina tudo ao meu redor."</p>
+            <p style="margin-top: 20px; opacity: 0.8;">Você é especial por ser exatamente quem você é: autêntica, linda e o amor da minha vida.</p>
+            <button class="nav-btn" onclick="next(4)" style="background: var(--primary);">O Gran Finale ➔</button>
+        </section>
+
+        <section>
+            <h1>Feliz 4 Meses!</h1>
+            <p>Obrigado por ser minha parceira de vida. Este é apenas o começo da nossa eternidade.</p>
+            <div class="highlight" style="color: var(--primary);">Eu te amo infinitamente! ❤️</div>
+            
+            <button class="nav-btn" onclick="celebrar()">Clique aqui para o seu presente 🎁</button>
+            <div id="final-gift" style="display:none; margin-top: 20px; padding: 20px; border: 2px dashed var(--primary); border-radius: 20px;">
+                <h3>🎫 VALE UM JANTAR INESQUECÍVEL</h3>
+                <p>Eu, você e seu lugar favorito. Feliz data!</p>
+            </div>
+        </section>
+
+    </div>
 
     <script>
-        // Efeito de Revelação no Scroll
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) {
-                    reveals[i].classList.add("active");
-                }
+        let currentStep = 0;
+        const container = document.getElementById('master-container');
+        const dots = document.querySelectorAll('.dot');
+
+        // Função para navegar entre as seções
+        function next(step) {
+            currentStep = step;
+            container.style.transform = `translateX(-${step * 100}vw)`;
+            
+            // Atualiza os pontinhos de progresso
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === step);
+            });
+
+            // Se for a seção do final, joga confetes automáticos
+            if(step === 4) {
+                setTimeout(celebrar, 500);
             }
         }
-        window.addEventListener("scroll", reveal);
-        window.onload = reveal;
 
-        // Contador de Tempo Profissional
-        const startDate = new Date("2025-11-22T00:00:00").getTime();
+        // Contador de Batimentos (80 bpm)
+        const inicio = new Date("2025-11-22T00:00:00").getTime();
         setInterval(() => {
-            const now = new Date().getTime();
-            const diff = now - startDate;
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-            document.getElementById("contador").innerHTML = `${d} dias • ${h}h ${m}m ${s}s de nós`;
+            const agora = new Date().getTime();
+            const batidas = Math.floor(((agora - inicio) / (1000 * 60)) * 80);
+            const el = document.getElementById("batimentos");
+            if(el) el.innerHTML = batidas.toLocaleString('pt-BR');
         }, 1000);
 
-        // Chuva de Corações Elegante
+        // Chuva de Corações Constante
         function createHeart() {
             const heart = document.createElement("div");
             heart.className = "heart-particle";
-            heart.innerHTML = "❤️";
+            heart.innerHTML = ["❤️", "💖", "✨", "🌸"][Math.floor(Math.random() * 4)];
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.top = "100vh";
-            heart.style.fontSize = (Math.random() * 10 + 10) + "px";
-            heart.style.opacity = Math.random() * 0.5 + 0.2;
+            heart.style.fontSize = (Math.random() * 15 + 10) + "px";
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 4000);
         }
-        setInterval(createHeart, 500);
+        setInterval(createHeart, 300);
 
-        function showSurprise() {
-            const box = document.getElementById("surpresa-box");
-            box.style.display = "block";
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        // Efeito de Confetes Final
+        function celebrar() {
+            confetti({
+                particleCount: 200,
+                spread: 90,
+                origin: { y: 0.6 },
+                colors: ['#ff4d6d', '#ffffff', '#ffb3c1']
+            });
+            const gift = document.getElementById('final-gift');
+            if(gift) gift.style.display = 'block';
         }
     </script>
 </body>
