@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para o Meu Amor ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400&family=Playfair+Display:italic&display=swap" rel="stylesheet">
+    <title>Nossos 4 Meses ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&family=Playfair+Display:italic&display=swap" rel="stylesheet">
     <style>
         :root {
             --cor-principal: #e63946;
             --cor-fundo: #fdf0f0;
             --cor-texto: #1d3557;
+            --cor-noite: #0b132b;
         }
 
         body {
@@ -30,7 +31,6 @@
             top: -10%;
             z-index: 9999;
             user-select: none;
-            cursor: default;
             animation: queda linear forwards;
         }
 
@@ -50,20 +50,19 @@
             font-family: 'Dancing Script', cursive;
             font-size: 4rem;
             color: var(--cor-principal);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
-        /* Estilo do Contador */
         #contador {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             background: white;
-            padding: 15px;
+            padding: 12px 25px;
             border-radius: 50px;
             display: inline-block;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-bottom: 30px;
             color: var(--cor-principal);
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .carta {
@@ -80,6 +79,7 @@
             font-size: 2.5rem;
             text-align: center;
             color: var(--cor-principal);
+            margin-top: 0;
         }
 
         .poesia {
@@ -92,105 +92,39 @@
             margin: 30px 0;
         }
 
+        /* ESTILO MAPA ESTELAR */
+        .mapa-estelar {
+            background: var(--cor-noite);
+            color: #ffffff;
+            padding: 40px 20px;
+            border-radius: 20px;
+            margin-top: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .estrelas-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 20px);
+            background-size: 50px 50px;
+            opacity: 0.2;
+        }
+
+        .coordenadas {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: #5bc0be;
+            margin-bottom: 15px;
+            display: block;
+        }
+
         .btn-surpresa {
             background: var(--cor-principal);
             color: white;
             border: none;
             padding: 15px 40px;
             border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: 0.3s;
-            display: block;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #mensagem-secreta {
-            display: none;
-            margin-top: 20px;
-            background: #fff0f3;
-            padding: 20px;
-            border-radius: 15px;
-            border: 2px dashed var(--cor-principal);
-            text-align: center;
-        }
-
-        footer { margin: 50px 0; font-size: 0.8rem; opacity: 0.6; }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <header>
-            <h1>4 Meses de Nós</h1>
-            <div id="contador">Carregando nosso tempo...</div>
-        </header>
-
-        <main class="carta">
-            <h2>Minha Vida,</h2>
-            <p>Eles dizem que quatro meses é pouco tempo, mas para mim parece uma vida inteira de aprendizado, risadas e carinho. Desde aquele 22 de novembro, meu mundo ganhou uma cor que eu nem sabia que existia.</p>
-            
-            <p>Nesse tempo, descobri que seu sorriso é meu combustível e que o melhor lugar do mundo é qualquer um, desde que você esteja lá. Não preciso de fotos aqui para lembrar de cada detalhe do seu rosto, porque guardo cada um deles gravado no meu coração.</p>
-
-            <div class="poesia">
-                "O amor não é sobre o tempo que passa, mas sobre como cada segundo se torna eterno quando estamos juntos."
-            </div>
-
-            <p>Obrigado por ser minha parceira, por me apoiar e por construir comigo essa história tão linda. Este site é apenas um pequeno gesto para dizer que eu presto atenção em nós e que cada dia ao seu lado é um presente.</p>
-            
-            <p><strong>Eu te amo infinitamente! ❤️</strong></p>
-
-            <button class="btn-surpresa" onclick="revelar()">Clique para uma Surpresa 🎁</button>
-            
-            <div id="mensagem-secreta">
-                <h3 style="margin-top:0">🎟️ Vale-Presente Especial</h3>
-                <p>Este cupom garante a você um <strong>Jantar Romântico</strong> no seu restaurante favorito, com direito a sobremesa e muitos beijos!</p>
-                <small>Válido para o dia que você preferir.</small>
-            </div>
-        </main>
-
-        <footer>Feito com ❤️ por [Seu Nome]</footer>
-    </div>
-
-    <script>
-        // --- 1. EFEITO CHUVA DE CORAÇÕES ---
-        function criarCoracao() {
-            const coracoes = ['❤️', '💖', '💕', '💗', '🌸'];
-            const coracao = document.createElement("div");
-            coracao.className = "coracao-caindo";
-            coracao.innerHTML = coracoes[Math.floor(Math.random() * coracoes.length)];
-            coracao.style.left = Math.random() * 100 + "vw";
-            coracao.style.fontSize = Math.random() * 20 + 10 + "px";
-            coracao.style.animationDuration = Math.random() * 3 + 2 + "s";
-            document.body.appendChild(coracao);
-            setTimeout(() => { coracao.remove(); }, 5000);
-        }
-        setInterval(criarCoracao, 400);
-
-        // --- 2. CONTADOR DE TEMPO ---
-        const dataInicio = new Date("2025-11-22T00:00:00").getTime();
-        function atualizarContador() {
-            const agora = new Date().getTime();
-            const diff = agora - dataInicio;
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((diff % (1000 * 60)) / 1000);
-            document.getElementById("contador").innerHTML = 
-                `Estamos juntos há ${dias} dias, ${horas}h ${minutos}m e ${segundos}s`;
-        }
-        setInterval(atualizarContador, 1000);
-
-        // --- 3. BOTÃO SURPRESA ---
-        function revelar() {
-            const msg = document.getElementById("mensagem-secreta");
-            msg.style.display = "block";
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        }
-    </script>
-
-</body>
-</html>
+            font
