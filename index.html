@@ -8,43 +8,41 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root { --primary: #ff4d6d; --bg: #fff5f6; --text: #2b2d42; --night: #0b132b; }
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; } /* Cursor personalizado */
+        * { margin: 0; padding: 0; box-sizing: border-box; } 
         
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; transition: background 1.5s ease; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; transition: background 1.5s ease; cursor: crosshair; }
 
-        /* Custom Cursor */
-        #cursor { width: 20px; height: 20px; background: var(--primary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; transition: transform 0.1s; }
+        /* Cursor de Brilho (Opcional) */
+        #cursor-trail { position: fixed; pointer-events: none; z-index: 9999; }
 
         /* Layout */
-        .timeline-wrapper { display: flex; width: 500vw; height: 100vh; transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1); }
-        section { width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; text-align: center; position: relative; }
+        .timeline-wrapper { display: flex; width: 500vw; height: 100vh; transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1); }
+        section { width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; position: relative; }
 
-        /* Typography */
-        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(3rem, 10vw, 6rem); color: var(--primary); margin-bottom: 20px; }
-        .typewriter { font-size: 1.2rem; min-height: 1.6em; max-width: 600px; font-weight: 300; }
+        /* Tipografia */
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(2.5rem, 8vw, 5rem); color: var(--primary); margin-bottom: 20px; }
+        .typewriter { font-size: 1.1rem; min-height: 1.6em; max-width: 650px; font-weight: 300; line-height: 1.8; }
 
-        /* Music Toggle */
-        #music-toggle { position: fixed; top: 20px; right: 20px; z-index: 2000; background: white; border: none; padding: 10px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; }
+        /* Botão de Música Minimalista */
+        #music-btn { position: fixed; top: 20px; right: 20px; z-index: 2000; background: white; border: none; padding: 12px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; font-size: 1.2rem; }
 
-        /* Sections Variations */
+        /* Estilos de Seção */
         .section-night { background: var(--night) !important; color: white !important; }
         .section-night h1 { color: #5bc0be; }
 
-        /* Floating Elements */
+        /* Elementos Flutuantes */
         .floating-heart { position: absolute; pointer-events: none; animation: floatUp 4s linear infinite; z-index: 1; opacity: 0.6; }
-        @keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-100vh) scale(1.5); opacity: 0; } }
+        @keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
 
-        .btn-next { margin-top: 40px; padding: 18px 45px; border-radius: 100px; border: none; background: var(--text); color: white; font-weight: 600; cursor: pointer; transition: 0.4s; z-index: 100; letter-spacing: 2px; }
-        .btn-next:hover { background: var(--primary); transform: scale(1.1); box-shadow: 0 15px 30px rgba(255, 77, 109, 0.4); }
+        .btn-next { margin-top: 40px; padding: 15px 40px; border-radius: 100px; border: none; background: var(--text); color: white; font-weight: 600; cursor: pointer; transition: 0.4s; z-index: 100; letter-spacing: 1px; }
+        .btn-next:hover { background: var(--primary); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3); }
 
-        .future-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 30px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); margin-top: 20px; display: none; }
+        .future-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(8px); padding: 25px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); margin-top: 20px; display: none; text-align: left; max-width: 500px; }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
-
-    <button id="music-toggle" onclick="toggleMusic()">🎵</button>
+    <button id="music-btn" onclick="toggleMusic()">🎵</button>
     <audio id="bg-music" loop>
         <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
     </audio>
@@ -52,65 +50,60 @@
     <div class="timeline-wrapper" id="master-container">
         
         <section>
-            <h1 id="title-1">Oi, meu amor...</h1>
+            <h1>Oi, meu amor...</h1>
             <p class="typewriter" id="text-1"></p>
-            <button class="btn-next" onclick="next(1)">Entrar no nosso mundo ➔</button>
+            <button class="btn-next" onclick="next(1)">Nossa História ➔</button>
         </section>
 
         <section style="background: #fff0f3;">
-            <p style="letter-spacing: 4px; font-size: 0.7rem; color: var(--primary); margin-bottom: 20px;">NOSSA ETERNIDADE EM NÚMEROS</p>
+            <p style="letter-spacing: 3px; font-size: 0.7rem; color: var(--primary); margin-bottom: 20px; font-weight: 600;">NOSSA ETERNIDADE EM NÚMEROS</p>
             <div style="background: white; padding: 40px; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.03);">
-                <h2 id="batimentos" style="font-size: 3.5rem; color: var(--text); font-weight: 800;">0</h2>
-                <p style="opacity: 0.6;">batidas do meu coração por você.</p>
+                <h2 id="batimentos" style="font-size: 3rem; color: var(--text); font-weight: 800;">0</h2>
+                <p style="opacity: 0.6; margin-top: 10px;">vezes meu coração bateu por você desde Gonçalves.</p>
             </div>
-            <button class="btn-next" onclick="next(2)">Mas por que você? ➔</button>
+            <button class="btn-next" onclick="next(2)">O que eu sinto ➔</button>
         </section>
 
         <section>
-            <h1 style="font-size: 3.5rem;">Porque você é única.</h1>
-            <p class="typewriter" id="text-3" style="font-style: italic; font-family: 'Playfair Display'; font-size: 1.5rem;"></p>
-            <button class="btn-next" onclick="next(3)">Para onde vamos? ➔</button>
+            <h1 style="font-size: 3rem;">Para a mulher da minha vida.</h1>
+            <p class="typewriter" id="text-3" style="font-style: italic; font-family: 'Playfair Display'; font-size: 1.2rem;"></p>
+            <button class="btn-next" onclick="next(3)">Nosso amanhã ➔</button>
         </section>
 
         <section class="section-night">
             <h1>Nossos Sonhos.</h1>
-            <div id="text-4" class="typewriter"></div>
+            <p id="text-4" class="typewriter"></p>
             <button class="btn-next" style="background: #5bc0be;" onclick="showFuture()">Revelar Destinos ✈️</button>
             
             <div class="future-card" id="future">
-                <p>📍 <strong>Agosto 2026:</strong> Abraçar sua família em <b>Itapipoca</b>.</p>
-                <p style="margin: 15px 0;">🇮🇹 <strong>2028:</strong> Gelatto e pôr do sol na <b>Itália</b>.</p>
-                <p style="font-family: 'Dancing Script'; font-size: 2rem; color: #5bc0be;">Tudo com você.</p>
+                <p style="margin-bottom: 10px;">📍 <strong>Agosto 2026:</strong> Estaremos em <b>Itapipoca</b>. Mal posso esperar para conhecer suas raízes e ver de perto o lugar que te fez essa mulher incrível.</p>
+                <p>🇮🇹 <strong>2028:</strong> Pôr do sol na <b>Itália</b>. Nosso brinde internacional a tudo o que construímos desde aquele dia 22.</p>
+                <p style="font-family: 'Dancing Script'; font-size: 1.8rem; color: #5bc0be; margin-top: 15px; text-align: center;">Tudo com você.</p>
             </div>
         </section>
 
         <section>
-            <h1>Feliz 4 Meses.</h1>
-            <p>Este é o meu "eu te amo" em forma de código.</p>
-            <button class="btn-next" onclick="finalCelebrate()">Celebrar Nós Dois ❤️</button>
+            <h1>Feliz 4 Meses!</h1>
+            <p>Este site é apenas um pequeno pedaço de tudo o que eu sinto.</p>
+            <div style="margin-top: 20px; font-family: 'Playfair Display'; font-size: 1.5rem; color: var(--primary);">Eu te amo infinitamente. ❤️</div>
+            <button class="btn-next" onclick="finalCelebrate()">Celebrar Nós Dois 🥂</button>
         </section>
     </div>
 
     <script>
-        // Custom Cursor Logic
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Navigation & Typewriter
         let currentStep = 0;
         const container = document.getElementById('master-container');
+        const music = document.getElementById('bg-music');
         
+        // Seus textos personalizados
         const texts = [
-            "Hoje fazemos 4 meses, e eu decidi te contar uma história...",
-            "", // Section 2 doesn't use typewriter
-            "Você transformou um dia comum em Gonçalves no início da melhor aventura da minha vida. Te amar é fácil, é leve, é casa.",
-            "Nosso mapa está apenas começando a ser desenhado. De Itapipoca ao Coliseu, meu destino é onde você estiver."
+            "Hoje fazemos 4 meses, e eu decidi te contar uma história que começou em Gonçalves e não tem data para acabar...",
+            "", 
+            "Você é a mulher que mudou meu mundo. Em 120 dias, descobri que sua luz ilumina tudo ao meu redor e me faz querer ser melhor a cada dia. Você não é apenas a mulher da minha vida; você é a minha vida inteira acontecendo agora.",
+            "Nosso mapa está apenas começando. De Itapipoca ao Coliseu, meu destino favorito será sempre segurando a sua mão."
         ];
 
-        function typeWriter(text, elementId, speed = 50) {
+        function typeWriter(text, elementId, speed = 40) {
             let i = 0;
             const element = document.getElementById(elementId);
             element.innerHTML = "";
@@ -128,19 +121,20 @@
             currentStep = step;
             container.style.transform = `translateX(-${step * 100}vw)`;
             if (texts[step]) {
-                setTimeout(() => typeWriter(texts[step], `text-${step + 1}`), 800);
+                // Pequeno delay para a animação de deslize terminar
+                setTimeout(() => typeWriter(texts[step], `text-${step + 1}`), 1000);
             }
         }
 
-        // Heartbeats (80bpm)
-        const inicio = new Date("2025-11-22T00:00:00").getTime();
+        // Lógica de Batimentos (80bpm)
+        const inicioData = new Date("2025-11-22T00:00:00").getTime();
         setInterval(() => {
             const agora = new Date().getTime();
-            const batidas = Math.floor(((agora - inicio) / (1000 * 60)) * 80);
+            const batidas = Math.floor(((agora - inicioData) / (1000 * 60)) * 80);
             document.getElementById("batimentos").innerHTML = batidas.toLocaleString('pt-BR');
         }, 1000);
 
-        // Hearts Animation
+        // Chuva de Corações
         setInterval(() => {
             const heart = document.createElement("div");
             heart.className = "floating-heart";
@@ -150,11 +144,9 @@
             heart.style.fontSize = (Math.random() * 20 + 10) + "px";
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 4000);
-        }, 300);
+        }, 400);
 
-        // Music
         function toggleMusic() {
-            const music = document.getElementById('bg-music');
             if (music.paused) { music.play(); } else { music.pause(); }
         }
 
@@ -164,11 +156,13 @@
         }
 
         function finalCelebrate() {
-            confetti({ particleCount: 400, spread: 150, origin: { y: 0.5 } });
+            confetti({ particleCount: 400, spread: 150, origin: { y: 0.5 }, colors: ['#ff4d6d', '#ffffff', '#ffb3c1'] });
         }
 
-        // Init first typewriter
-        window.onload = () => typeWriter(texts[0], "text-1");
+        // Inicia o primeiro texto ao carregar
+        window.onload = () => {
+            typeWriter(texts[0], "text-1");
+        };
     </script>
 </body>
 </html>
