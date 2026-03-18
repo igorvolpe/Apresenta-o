@@ -1,4 +1,4 @@
-# ❤️ Nossa História em Código
+# ❤️ Nossa História ❤️
 
 Bem-vinda ao nosso cantinho digital, **Livia**! 🌹
 
