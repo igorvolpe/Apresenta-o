@@ -11,33 +11,35 @@
         * { margin: 0; padding: 0; box-sizing: border-box; } 
         body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
 
-        .music-btn { position: fixed; top: 20px; right: 20px; z-index: 1001; background: white; padding: 12px 20px; border-radius: 50px; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3); text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.9rem; border: 2px solid var(--primary); transition: 0.3s; }
+        .music-btn { position: fixed; top: 20px; right: 20px; z-index: 1001; background: white; padding: 12px 20px; border-radius: 50px; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3); text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.8rem; border: 2px solid var(--primary); transition: 0.3s; display: flex; align-items: center; gap: 8px; }
         .music-btn:hover { background: var(--primary); color: white; transform: scale(1.05); }
 
-        .timeline-wrapper { display: flex; width: 700vw; height: 100vh; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
+        .timeline-wrapper { display: flex; width: 600vw; height: 100vh; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
         section { width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px; text-align: center; position: relative; }
 
-        h1 { font-family: 'Gwendolyn', cursive; font-size: clamp(3.5rem, 10vw, 5.5rem); color: var(--primary); margin-bottom: 20px; }
+        h1 { font-family: 'Gwendolyn', cursive; font-size: clamp(3.5rem, 10vw, 5.5rem); color: var(--primary); margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.05); }
         .titulo-numeros { font-family: 'Gwendolyn', cursive; font-size: clamp(2.5rem, 6vw, 3.5rem); color: var(--primary); margin-bottom: 15px; }
         
-        .frase-container { border: 2px solid var(--primary); padding: 30px; border-radius: 25px; background: rgba(255, 255, 255, 0.4); max-width: 650px; }
+        .frase-container { border: 2px solid var(--primary); padding: 30px; border-radius: 25px; background: rgba(255, 255, 255, 0.4); max-width: 650px; box-shadow: 0 10px 20px rgba(255, 77, 109, 0.1); }
         .texto-principal { font-size: 1.1rem; line-height: 1.8; letter-spacing: 0.5px; }
 
-        /* ESTILO DO CAÇA PALAVRAS */
-        .word-grid { display: grid; grid-template-columns: repeat(10, 35px); gap: 5px; background: white; padding: 15px; border-radius: 15px; border: 2px solid var(--primary); margin-bottom: 20px; }
-        .cell { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; background: #fff5f6; border-radius: 5px; cursor: pointer; font-weight: 700; user-select: none; transition: 0.2s; font-size: 0.9rem; }
+        /* JOGO CAÇA PALAVRAS */
+        .word-grid { display: grid; grid-template-columns: repeat(10, 32px); gap: 4px; background: white; padding: 15px; border-radius: 15px; border: 2px solid var(--primary); margin-bottom: 15px; }
+        .cell { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: #fff5f6; border-radius: 4px; cursor: pointer; font-weight: 700; font-size: 0.8rem; transition: 0.2s; user-select: none; }
         .cell.selected { background: var(--primary); color: white; }
-        .cell.found { background: #5bc0be; color: white; cursor: default; }
-        .frase-jogo { max-width: 600px; font-style: italic; margin-top: 15px; line-height: 2; }
-        .word-slot { border-bottom: 2px solid var(--primary); padding: 0 10px; font-weight: 700; color: var(--primary); min-width: 60px; display: inline-block; }
+        .cell.found { background: #5bc0be !important; color: white !important; cursor: default; }
+        .frase-jogo { max-width: 600px; font-size: 0.95rem; line-height: 2; margin-top: 10px; }
+        .word-slot { border-bottom: 2px solid var(--primary); padding: 0 5px; font-weight: 700; color: var(--primary); min-width: 50px; display: inline-block; }
 
-        .btn-next { margin-top: 30px; padding: 15px 45px; border-radius: 100px; border: none; background: var(--text); color: white; font-weight: 600; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+        .btn-next { margin-top: 25px; padding: 15px 40px; border-radius: 100px; border: none; background: var(--text); color: white; font-weight: 600; cursor: pointer; transition: 0.3s; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; z-index: 10; }
         .btn-next:hover { background: var(--primary); transform: translateY(-3px); }
 
+        .card-futuro { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); padding: 25px; border-radius: 20px; border: 2px solid #5bc0be; margin-top: 20px; text-align: left; max-width: 500px; }
         .section-night { background: var(--night) !important; color: white !important; }
-        .moldura-carta { background: white; padding: 40px; border-radius: 15px; border: 4px double var(--primary); max-width: 700px; text-align: left; }
+        .section-night h1 { color: #5bc0be; }
 
-        .floating-heart { position: absolute; pointer-events: none; animation: floatUp 4s linear infinite; opacity: 0.5; }
+        .moldura-carta { background: white; padding: 40px; border-radius: 15px; border: 4px double var(--primary); max-width: 700px; text-align: left; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        .floating-heart { position: absolute; pointer-events: none; animation: floatUp 4s linear infinite; opacity: 0.5; z-index: 1; }
         @keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-110vh); opacity: 0; } }
     </style>
 </head>
@@ -58,7 +60,7 @@
         <section style="background: #fff0f3;">
             <p class="titulo-numeros">Nossa Jornada em Números</p>
             <div style="background: white; padding: 30px 50px; border: 2px solid var(--primary); border-radius: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.05);">
-                <h2 id="batimentos" style="font-size: 3.5rem; font-weight: 800; font-family: 'Montserrat';">0</h2>
+                <h2 id="batimentos" style="font-size: 3.5rem; color: var(--text); font-weight: 800; font-family: 'Montserrat';">0</h2>
                 <p style="opacity: 0.6; margin-top: 5px;">batidas do meu coração por você.</p>
             </div>
             <button class="btn-next" onclick="next(2)">Continuar ➔</button>
@@ -66,24 +68,20 @@
 
         <section class="section-night">
             <h1 style="color: #5bc0be;">Próximos Passos</h1>
-            <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; border: 2px solid #5bc0be; text-align: left; max-width: 500px;">
-                <p><strong style="color: #5bc0be;">📍 Agosto de 2026:</strong> Nossa viagem para Itapipoca.</p>
-                <p style="margin-top: 15px;"><strong style="color: #5bc0be;">🇮🇹 em 2028:</strong> Nosso grande sonho internacional na Itália.</p>
+            <div class="card-futuro">
+                <p><strong style="color: #5bc0be;">📍 Agosto de 2026:</strong> Nossa viagem para Itapipoca. Mal posso esperar para conhecer suas raízes.</p>
+                <p style="margin-top: 15px;"><strong style="color: #5bc0be;">🇮🇹 em 2028:</strong> Nosso grande sonho internacional: ver o pôr do sol na Itália.</p>
             </div>
-            <button class="btn-next" onclick="next(3)" style="background: #5bc0be; color: var(--night);">Um Desafio para Você ➔</button>
+            <button class="btn-next" onclick="next(3)" style="background: #5bc0be; color: var(--night);">Um Desafio Especial ➔</button>
         </section>
 
         <section style="background: #fffafb;">
-            <p class="titulo-numeros" style="font-size: 2.5rem;">Encontre nossas palavras</p>
-            <p style="font-size: 0.8rem; margin-bottom: 15px; opacity: 0.7;">(Clique nas letras para formar as palavras)</p>
-            
+            <p class="titulo-numeros" style="font-size: 2.2rem;">Encontre nossas palavras</p>
             <div class="word-grid" id="grid"></div>
-
             <div class="frase-jogo">
                 "Nossa história começou em <span class="word-slot" id="slot-GONCALVES">_______</span>, nosso <span class="word-slot" id="slot-AMOR">_______</span> nos levará para <span class="word-slot" id="slot-ITAPIPOCA">_______</span> e depois para a <span class="word-slot" id="slot-ITALIA">_______</span>, porque você é a minha <span class="word-slot" id="slot-VIDA">_______</span>."
             </div>
-
-            <button class="btn-next" id="btn-pos-jogo" onclick="next(4)" style="display: none;">Ver Minha Mensagem ➔</button>
+            <button class="btn-next" id="btn-pos-jogo" onclick="next(4)" style="display: none;">Ler minha mensagem ➔</button>
         </section>
 
         <section style="background: #fffcf2;">
@@ -99,7 +97,7 @@
         <section>
             <h1>Feliz 4 Meses!</h1>
             <div class="frase-container" style="border-style: dashed;">
-                <p class="texto-principal">Obrigado por ser minha parceira de vida. Esse é só o começo de tudo o que vamos viver juntos, e mal posso esperar para cada momento.</p>
+                <p class="texto-principal">Obrigado por ser minha parceira de vida. Esse é só o começo de tudo o que vamos viver juntos.</p>
             </div>
             <div style="font-family: 'Playfair Display'; font-size: 2rem; color: var(--primary); margin: 25px 0;">Para sempre, nós dois. ❤️</div>
             <button class="btn-next" onclick="finalCelebrate()">Celebrar Nossa Data 🥂</button>
@@ -112,48 +110,60 @@
         const container = document.getElementById('master-container');
         function next(step) { currentStep = step; container.style.transform = `translateX(-${step * 100}vw)`; }
 
-        // LÓGICA DO CAÇA PALAVRAS
+        // JOGO: Letras espalhadas no grid 10x10
+        const gridData = [
+            'G','O','N','C','A','L','V','E','S','X',
+            'X','X','I','T','A','L','I','A','X','X',
+            'A','M','O','R','X','X','X','X','X','V',
+            'X','X','X','X','X','X','X','X','X','I',
+            'I','T','A','P','I','P','O','C','A','D',
+            'X','X','X','X','X','X','X','X','X','A',
+            'B','R','K','L','M','N','P','Q','S','T',
+            'U','V','W','Y','Z','A','B','C','D','E',
+            'F','G','H','I','J','K','L','M','N','O',
+            'P','R','S','T','U','V','X','Z','W','Y'
+        ];
+
         const words = ["GONCALVES", "AMOR", "ITAPIPOCA", "ITALIA", "VIDA"];
         let foundWords = [];
-        const gridLetters = "GONCALVESXAMORXXXXXXITAPIPOCAXITALIAXXXXVIDAXXXXXXPQLAMZNCBWRTYU"; // Letras base simplificadas
-        const gridContainer = document.getElementById('grid');
-        let selectedCells = [];
+        let currentSelection = "";
+        let selectedIndices = [];
 
-        // Criar Grid
-        for(let i=0; i<100; i++) {
+        const gridContainer = document.getElementById('grid');
+        gridData.forEach((letra, i) => {
             const cell = document.createElement('div');
             cell.className = 'cell';
-            cell.innerText = gridLetters[i] || String.fromCharCode(65 + Math.floor(Math.random() * 26));
-            cell.onclick = () => selectCell(cell, i);
+            cell.innerText = letra === 'X' ? String.fromCharCode(65 + Math.floor(Math.random() * 26)) : letra;
+            cell.onclick = () => {
+                if(cell.classList.contains('found')) return;
+                cell.classList.toggle('selected');
+                updateSelection();
+            };
             gridContainer.appendChild(cell);
-        }
+        });
 
-        function selectCell(cell, index) {
-            if(cell.classList.contains('found')) return;
-            cell.classList.toggle('selected');
-            
-            const selectedText = Array.from(document.querySelectorAll('.cell.selected')).map(c => c.innerText).join('');
+        function updateSelection() {
+            const selectedCells = document.querySelectorAll('.cell.selected');
+            currentSelection = Array.from(selectedCells).map(c => c.innerText).join('');
             
             words.forEach(word => {
-                if(selectedText.includes(word) && !foundWords.includes(word)) {
+                if(currentSelection.includes(word) && !foundWords.includes(word)) {
                     foundWords.push(word);
                     document.getElementById(`slot-${word}`).innerText = word;
-                    document.querySelectorAll('.cell.selected').forEach(c => {
-                        if(word.includes(c.innerText)) { c.classList.remove('selected'); c.classList.add('found'); }
+                    selectedCells.forEach(c => {
+                        if(word.includes(c.innerText)) {
+                            c.classList.remove('selected');
+                            c.classList.add('found');
+                        }
                     });
-                    checkWin();
+                    if(foundWords.length === words.length) {
+                        confetti({ particleCount: 150, spread: 70, origin: { y: 0.8 } });
+                        document.getElementById('btn-pos-jogo').style.display = 'block';
+                    }
                 }
             });
         }
 
-        function checkWin() {
-            if(foundWords.length === words.length) {
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.8 } });
-                document.getElementById('btn-pos-jogo').style.display = 'block';
-            }
-        }
-
-        // Contador e Corações
         const inicioData = new Date("2025-11-22T00:00:00").getTime();
         setInterval(() => {
             const agora = new Date().getTime();
@@ -174,6 +184,7 @@
 
         function finalCelebrate() {
             confetti({ particleCount: 300, spread: 120, origin: { y: 0.6 }, colors: ['#ff4d6d', '#ffffff'] });
+            window.open("https://www.youtube.com/watch?v=KS_TrJOQB-g", "_blank");
         }
     </script>
 </body>
