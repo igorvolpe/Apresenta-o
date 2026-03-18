@@ -3,127 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossos 4 Meses de Amor ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <title>Para o Meu Amor ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400&family=Playfair+Display:italic&display=swap" rel="stylesheet">
     <style>
         :root {
-            --cor-principal: #ff4d6d;
-            --cor-fundo: #fff0f3;
+            --cor-principal: #e63946; /* Vermelho Paixão */
+            --cor-secundaria: #ffb3c1; /* Rosa Claro */
+            --cor-texto: #1d3557; /* Azul Petróleo Escuro */
+            --cor-fundo: #fdf0f0; /* Bege Rosado Bem Claro */
         }
 
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            background: var(--cor-fundo);
-            color: #590d22;
-            overflow-x: hidden;
-        }
-
-        header {
-            height: 100vh;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(255, 77, 109, 0.2), rgba(255, 77, 109, 0.2)), url('https://www.transparenttextures.com/patterns/cubes.png');
+            min-height: 100vh;
             text-align: center;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
-            margin: 0;
-            animation: fadeIn 2s ease-in;
+        /* Corações Decorativos no Fundo */
+        .heart-bg {
+            position: absolute;
+            color: var(--cor-secundaria);
+            opacity: 0.3;
+            animation: float 6s infinite ease-in-out;
+            z-index: 0;
         }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .heart-1 { font-size: 50px; top: 10%; left: 10%; animation-delay: 0s; }
+        .heart-2 { font-size: 80px; bottom: 15%; right: 10%; animation-delay: 1s; }
+        .heart-3 { font-size: 40px; top: 40%; right: 20%; animation-delay: 2s; }
+        .heart-4 { font-size: 60px; bottom: 20%; left: 15%; animation-delay: 3s; }
 
         .container {
-            max-width: 900px;
-            margin: -50px auto 50px auto;
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
+            max-width: 700px;
             padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            line-height: 1.8;
-            text-align: center;
-        }
-
-        /* GALERIA DE FOTOS */
-        .galeria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .foto-container {
+            z-index: 1; /* Garante que o texto fique acima dos corações */
             position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            aspect-ratio: 1 / 1;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
         }
 
-        .foto-container:hover {
-            transform: scale(1.05);
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            color: var(--cor-principal);
+            margin-bottom: 5px;
+            margin-top: 0;
         }
 
-        .foto-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .data {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            font-weight: 300;
         }
 
-        .legenda {
-            position: absolute;
-            bottom: 0;
-            background: rgba(255, 77, 109, 0.8);
+        .main-text {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.1);
+            line-height: 1.9;
+        }
+
+        .main-text p {
+            margin-bottom: 20px;
+        }
+
+        .poetic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #457b9d;
+            border-left: 3px solid var(--cor-secundaria);
+            padding-left: 20px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        /* Divisor Decorativo */
+        .divider {
+            color: var(--cor-principal);
+            font-size: 2rem;
+            margin: 30px 0;
+        }
+
+        /* Botão Surpresa */
+        .btn-surpresa {
+            background-color: var(--cor-principal);
             color: white;
-            width: 100%;
-            padding: 10px;
-            font-size: 0.9rem;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .btn-surpresa:hover {
+            background-color: #c9184a;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5);
         }
+
+        #mensagem-secreta {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        h3.vale {
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 3px;
+            color: #457b9d;
+            margin-bottom: 10px;
+        }
+
+        /* MÚSICA */
+        .music-player {
+            margin-top: 50px;
+            border-radius: 12px;
+            overflow: hidden;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+        .music-player:hover { opacity: 1; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>4 Meses de Nós Dois</h1>
-        <p style="font-size: 1.2rem;">22 de Novembro ➔ 22 de Março</p>
-    </header>
+    <div class="heart-bg heart-1">❤️</div>
+    <div class="heart-bg heart-2">💖</div>
+    <div class="heart-bg heart-3">💙</div>
+    <div class="heart-bg heart-4">💕</div>
 
     <div class="container">
-        <div class="card">
-            <h2>Minha [Nome dela],</h2>
-            <p>O tempo voa quando estou ao seu lado. Estes 4 meses (ou 120 dias, ou 2.880 horas!) foram os mais felizes que já vivi. Cada detalhe seu me faz ter certeza de que quero muitos outros "dia 22" com você.</p>
+        <header>
+            <h1>Nossos 4 Meses</h1>
+            <p class="data">22.NOV ➔ 22.MAR</p>
+        </header>
+
+        <div class="main-text">
+            <h2>Para a minha [Nome dela],</h2>
             
-            <div class="galeria">
-                <div class="foto-container">
-                    <img src="foto1.jpg" alt="Nossa primeira foto">
-                    <div class="legenda">Onde tudo começou...</div>
-                </div>
+            <p>Eles dizem que o tempo é relativo, e eu nunca entendi isso tão bem quanto nestes últimos quatro meses. Ao seu lado, as horas voam como segundos quando estamos rindo, mas parecem eternidades quando estou contando os minutos para te ver de novo.</p>
 
-                <div class="foto-container">
-                    <img src="foto2.jpg" alt="Momento engraçado">
-                    <div class="legenda">Amo nossas risadas!</div>
-                </div>
+            <div class="divider">❦</div>
 
-                <div class="foto-container">
-                    <img src="foto3.jpg" alt="Viagem ou Encontro">
-                    <div class="legenda">Um dia inesquecível.</div>
-                </div>
+            <p>Nesse pequeno, mas intenso capítulo da nossa história, você transformou dias comuns em memórias extraordinárias. Seu sorriso virou meu refúgio e sua companhia, o meu lugar favorito no mundo. Obrigado por me escolher, por me ensinar novas formas de amar e por ser essa pessoa incrível que ilumina tudo ao redor.</p>
+
+            <div class="poetic">
+                "Nosso amor não é uma linha reta, é um desenho lindo que estamos colorindo juntos, dia após dia, commit após commit."
+            </div>
+
+            <p>Este site é apenas um pequeno reflexo do orgulho que tenho de ser seu namorado. Que venham os próximos meses, anos e todas as aventuras que o futuro nos reserva.</p>
+
+            <p><strong>Eu te amo muito!</strong></p>
+            <p>Com todo o carinho do mundo,<br><strong>[Seu Nome]</strong></p>
+
+            <button class="btn-surpresa" onclick="revelar()">Abra sua Surpresa 🎁</button>
+            <div id="mensagem-secreta">
+                <h3 class="vale">🎫 VALE-PRESENTE</h3>
+                <p style="font-size: 1.2rem; color: var(--cor-principal);">Um Jantar No Seu Lugar Favorito!</p>
+                <p>Válido para o próximo final de semana. Preparada?</p>
+            </div>
+
+            <div class="music-player">
+                <iframe src="https://open.spotify.com/embed/track/1di1bOnGdpdD44OfbY5VNK?utm_source=generator" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
             </div>
         </div>
     </div>
 
+    <script>
+        function revelar() {
+            var msg = document.getElementById("mensagem-secreta");
+            msg.style.display = (msg.style.display === "block") ? "none" : "block";
+            // Rolagem suave para a surpresa
+            if(msg.style.display === "block") {
+                setTimeout(function(){
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                }, 100);
+            }
+        }
+    </script>
 </body>
 </html>
