@@ -1,200 +1,251 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Minha Vida ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Gwendolyn:wght@700&family=Montserrat:wght@300;400;600&family=Playfair+Display:italic,wght@700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <title>Nossa Jornada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Montserrat:wght@400;600&family=Vollkorn:ital,wght@1,600&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #ff4d6d; --bg: #fff5f6; --text: #2b2d42; --night: #0b132b; }
-        * { margin: 0; padding: 0; box-sizing: border-box; } 
-        
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background: var(--bg); 
-            color: var(--text); 
-            overflow: hidden; 
+        /* --- ESTILOS GERAIS --- */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif; /* Fonte padrão para texto */
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Navegação Horizontal */
-        .timeline-wrapper { display: flex; width: 600vw; height: 100vh; transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
-        
-        section { width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px; text-align: center; position: relative; }
-
-        /* Títulos com a nova fonte manuscrita */
-        h1 { 
-            font-family: 'Gwendolyn', cursive; 
-            font-size: clamp(3.5rem, 10vw, 5.5rem); 
-            color: var(--primary); 
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        /* Mixin para os corações flutuantes comuns */
+        .heart-icon {
+            color: #E74C3C; /* Vermelho dos corações */
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.8;
         }
-        
-        /* Borda ao redor das frases principais */
-        .frase-container {
-            border: 2px solid var(--primary);
+
+        /* --- SEÇÃO SUPERIOR (Próximos Passos - Fundo Escuro) --- */
+        .secao-superior {
+            background-color: #0F172A; /* Azul marinho muito escuro */
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative; /* Necessário para posicionar os corações */
+        }
+
+        .titulo-superior {
+            font-family: 'Fredoka', sans-serif; /* Fonte arredondada */
+            color: #72D0C4; /* Azul turquesa claro */
+            font-size: 80px;
+            margin-top: 0;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .cartao-info {
+            background-color: transparent;
+            border: 2px solid #72D0C4; /* Borda turquesa */
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 0 auto;
             padding: 30px;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.4);
-            max-width: 650px;
-            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.1);
+            text-align: left;
+            position: relative; /* Para o coração interno */
+            margin-bottom: 40px;
         }
 
-        .texto-principal { 
-            font-size: 1.1rem; 
-            font-weight: 400; 
-            line-height: 1.8; 
-            color: var(--text);
-            letter-spacing: 0.5px;
+        .item-data {
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 16px;
         }
 
-        /* Estilo da Carta Final com Borda Dupla */
-        .sessao-carta { background: #fffcf2 !important; }
-        .moldura-carta { 
-            background: white; 
-            padding: 40px; 
-            border-radius: 15px; 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05); 
-            max-width: 700px; 
-            text-align: left; 
-            line-height: 1.8;
-            border: 4px double var(--primary); /* Borda clássica dupla */
-            position: relative;
+        .cabecalho-data {
+            font-weight: 600;
+            color: #72D0C4;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
         }
 
-        .btn-next { 
-            margin-top: 30px; 
-            padding: 15px 45px; 
-            border-radius: 100px; 
-            border: none; 
-            background: var(--text); 
-            color: white; 
-            font-weight: 600; 
-            cursor: pointer; 
-            transition: 0.3s; 
-            z-index: 100;
+        .texto-data {
+            margin: 0;
+            padding-left: 30px; /* Alinha o texto abaixo do ícone */
+        }
+
+        .destaque {
+            font-weight: 600;
+        }
+
+        /* Coração interno do cartão */
+        .heart-interno {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+        }
+
+        /* Botão Superior */
+        .botao-superior {
+            background-color: #72D0C4; /* Turquesa */
+            color: #0F172A; /* Texto escuro */
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
             font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-        }
-        .btn-next:hover { background: var(--primary); transform: translateY(-3px); }
-
-        .card-futuro { 
-            background: rgba(255,255,255,0.05); 
-            backdrop-filter: blur(10px); 
-            padding: 25px; 
-            border-radius: 20px; 
-            border: 2px solid #5bc0be; 
-            margin-top: 20px; 
-            text-align: left; 
-            max-width: 500px; 
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.3s;
         }
 
-        .section-night { background: var(--night) !important; color: white !important; }
-        .section-night h1 { color: #5bc0be; }
+        .botao-superior:hover {
+            background-color: #5bbdab;
+        }
 
-        .floating-heart { position: absolute; pointer-events: none; animation: floatUp 4s linear infinite; opacity: 0.5; z-index: 1; }
-        @keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-110vh); opacity: 0; } }
+        /* --- SEÇÃO INFERIOR (Feliz 4 Meses! - Fundo Claro) --- */
+        .secao-inferior {
+            background-color: #FFF1F2; /* Rosa bebê muito claro */
+            color: #333;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative; /* Necessário para posicionar o coração inferior */
+        }
+
+        .titulo-inferior {
+            font-family: 'Fredoka', sans-serif; /* Fonte arredondada */
+            color: #FF6B81; /* Rosa/coral vibrante */
+            font-size: 80px;
+            margin-top: 0;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .caixa-texto-rosa {
+            border: 2px dashed #FF6B81; /* Borda tracejada rosa */
+            border-radius: 15px;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .texto-principal {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .assinatura {
+            font-family: 'Vollkorn', serif; /* Fonte serifada itálica */
+            font-style: italic;
+            font-weight: 600;
+            color: #E74C3C; /* Vermelho */
+            font-size: 22px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Botão Inferior */
+        .botao-inferior {
+            background-color: #2D3748; /* Azul cinzento escuro */
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .botao-inferior:hover {
+            background-color: #1a202c;
+        }
+
+        /* --- POSICIONAMENTO DOS CORAÇÕES FLUTUANTES --- */
+        /* Na seção escura */
+        .secao-superior .h1 { top: 20px; left: 10%; }
+        .secao-superior .h2 { top: 70px; left: 30%; font-size: 16px; }
+        .secao-superior .h3 { top: 150px; right: 15%; }
+        .secao-superior .h4 { bottom: 60px; left: 5%; font-size: 25px; }
+        .secao-superior .h5 { bottom: 15px; right: 25%; font-size: 18px; }
+
+        /* Na seção clara */
+        .secao-inferior .h6 { top: 10px; right: 20%; font-size: 18px; }
+        .secao-inferior .h7 { bottom: 20px; left: 15%; font-size: 22px; }
+
     </style>
 </head>
 <body>
 
-    <div class="timeline-wrapper" id="master-container">
-        
-        <section>
-            <h1>4 Meses de Nós</h1>
-            <div class="frase-container">
-                <p class="texto-principal">Hoje fazemos 4 meses, e eu decidi te contar uma história que começou em Gonçalves e não tem data para acabar. Preparei este lugar só nosso para te dizer o quanto você é importante.</p>
-            </div>
-            <button class="btn-next" onclick="next(1)">Começar Jornada ➔</button>
-        </section>
+    <div class="secao-superior">
+        <span class="heart-icon h1">&#10084;</span>
+        <span class="heart-icon h2">&#10084;</span>
+        <span class="heart-icon h3">&#10084;</span>
+        <span class="heart-icon h4">&#10084;</span>
+        <span class="heart-icon h5">&#10084;</span>
 
-        <section style="background: #fff0f3;">
-            <p style="letter-spacing: 4px; font-size: 0.7rem; color: var(--primary); font-weight: 700; margin-bottom: 15px; text-transform: uppercase;">Nossa Jornada em Números</p>
-            <div style="background: white; padding: 30px 50px; border: 2px solid var(--primary); border-radius: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.05);">
-                <h2 id="batimentos" style="font-size: 3.5rem; color: var(--text); font-weight: 800; font-family: 'Montserrat';">0</h2>
-                <p style="opacity: 0.6; margin-top: 5px; font-weight: 400;">batidas do meu coração por você.</p>
-            </div>
-            <button class="btn-next" onclick="next(2)">Continuar ➔</button>
-        </section>
+        <h1 class="titulo-superior">Próximos Passos</h1>
 
-        <section class="section-night">
-            <h1 style="color: #5bc0be;">Próximos Passos</h1>
-            <div class="card-futuro">
-                <div style="margin-bottom: 15px;">
-                    <strong style="color: #5bc0be; font-size: 1.1rem;">📍 Agosto de 2026:</strong>
-                    <p style="font-size: 0.95rem; margin-top: 5px; opacity: 0.9;">Nossa viagem para <b>Itapipoca</b>. Mal posso esperar para conhecer suas raízes e sua família.</p>
+        <div class="cartao-info">
+            <div class="item-data">
+                <div class="cabecalho-data">
+                    <span style="font-size: 1.2em;">📍</span> Agosto de 2026:
                 </div>
-                <div>
-                    <strong style="color: #5bc0be; font-size: 1.1rem;">🇮🇹 2028:</strong>
-                    <p style="font-size: 0.95rem; margin-top: 5px; opacity: 0.9;">Nosso grande sonho internacional: ver o pôr do sol na <b>Itália</b> brindando ao nosso amor.</p>
+                <p class="texto-data">Nossa viagem para <span class="destaque">Itapipoca</span>. Mal posso esperar para conhecer suas raízes e sua família.</p>
+            </div>
+
+            <div class="item-data">
+                <div class="cabecalho-data">
+                    <span style="font-size: 1.2em;">🇮🇹</span> em 2028:
                 </div>
+                <p class="texto-data">Nosso grande sonho internacional: ver o pôr do sol na <span class="destaque">Itália</span> brindando ao nosso amor.</p>
             </div>
-            <button class="btn-next" onclick="next(3)" style="background: #5bc0be; color: var(--night);">Uma Mensagem Especial ➔</button>
-        </section>
+            
+            <span class="heart-icon heart-interno">&#10084;</span>
+        </div>
 
-        <section class="sessao-carta">
-            <div class="moldura-carta">
-                <p style="font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 15px;"><strong>Minha Vida,</strong></p>
-                <p class="texto-principal">Dizem que o mundo tem 8 bilhões de pessoas, mas para mim, a conta sempre foi muito mais simples: existe o mundo antes de você e o mundo depois de você.</p>
-                <p class="texto-principal">Desde aquele 22 de novembro, quando o frio de Gonçalves se tornou o cenário do nosso início, eu descobri que a felicidade não é um destino, é o jeito que você sorri para mim no meio de uma conversa boba.</p>
-                <p class="texto-principal">Ser incrível, para você, é natural. É o seu jeito de iluminar o ambiente sem fazer esforço. É a sua força que me admira e a sua doçura que me acalma. Nestes 4 meses, eu não apenas me apaixonei por quem você é, mas pela forma como você me faz querer ser alguém melhor.</p>
-                <p class="texto-principal">Você não é apenas a mulher da minha vida; você é a minha vida inteira acontecendo agora. Obrigado por me escolher.</p>
-                <p style="margin-top: 20px; text-align: right; font-family: 'Gwendolyn'; font-size: 2.5rem; color: var(--primary);">Eu te amo infinitamente! ❤️</p>
-            </div>
-            <button class="btn-next" onclick="next(4)">Quase lá... ✨</button>
-        </section>
-
-        <section>
-            <h1>Feliz 4 Meses!</h1>
-            <div class="frase-container" style="border-style: dashed;">
-                <p class="texto-principal">Obrigado por ser minha parceira de vida. Esse é só o começo de tudo o que vamos viver juntos.</p>
-            </div>
-            <div style="font-family: 'Playfair Display'; font-size: 2rem; color: var(--primary); margin: 25px 0;">Para sempre, nós dois. ❤️</div>
-            <button class="btn-next" onclick="finalCelebrate()">Celebrar Nossa Data 🥂</button>
-        </section>
-
+        <button class="botao-superior">
+            UMA MENSAGEM ESPECIAL <span>&rarr;</span>
+        </button>
     </div>
 
-    <script>
-        let currentStep = 0;
-        const container = document.getElementById('master-container');
+    <div class="secao-inferior">
+        <span class="heart-icon h6">&#10084;</span>
+        <span class="heart-icon h7">&#10084;</span>
 
-        function next(step) {
-            currentStep = step;
-            container.style.transform = `translateX(-${step * 100}vw)`;
-        }
+        <h1 class="titulo-inferior">Feliz 4 Meses!</h1>
 
-        // Contador de Batimentos
-        const inicioData = new Date("2025-11-22T00:00:00").getTime();
-        setInterval(() => {
-            const agora = new Date().getTime();
-            const batidas = Math.floor(((agora - inicioData) / (1000 * 60)) * 80);
-            document.getElementById("batimentos").innerHTML = batidas.toLocaleString('pt-BR');
-        }, 1000);
+        <div class="caixa-texto-rosa">
+            <p class="texto-principal">Obrigado por ser minha parceira de vida. Esse é só o começo de tudo o que vamos viver juntos, e mal posso esperar para cada momento.</p>
+        </div>
 
-        // Corações constantes
-        setInterval(() => {
-            const heart = document.createElement("div");
-            heart.className = "floating-heart";
-            heart.innerHTML = "❤️";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.top = "100vh";
-            heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 4000);
-        }, 300);
+        <p class="assinatura">Para sempre, nós dois. <span style="font-size: 1.2em;">❤️</span></p>
 
-        function finalCelebrate() {
-            confetti({ 
-                particleCount: 300, 
-                spread: 120, 
-                origin: { y: 0.6 }, 
-                colors: ['#ff4d6d', '#ffffff', '#ffccd5'] 
-            });
-        }
-    </script>
+        <button class="botao-inferior">
+            CELEBRAR NOSSA DATA <span style="font-size: 1.2em;">🥂</span>
+        </button>
+    </div>
+
 </body>
 </html>
