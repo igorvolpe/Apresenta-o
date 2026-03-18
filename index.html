@@ -3,176 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossa Jornada ❤️</title>
+    <title>Para Minha Vida ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:italic,wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
-        :root { --primary: #ff4d6d; --bg: #fff5f6; --text: #2b2d42; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #ff4d6d; --bg: #fff5f6; --text: #2b2d42; --night: #0b132b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; } /* Cursor personalizado */
         
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow: hidden; 
-        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; transition: background 1.5s ease; }
 
-        /* Container de Deslize Lateral */
-        .timeline-wrapper {
-            display: flex;
-            width: 500vw; 
-            height: 100vh;
-            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-        }
+        /* Custom Cursor */
+        #cursor { width: 20px; height: 20px; background: var(--primary); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; transition: transform 0.1s; }
 
-        section {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            text-align: center;
-            position: relative;
-        }
+        /* Layout */
+        .timeline-wrapper { display: flex; width: 500vw; height: 100vh; transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1); }
+        section { width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; text-align: center; position: relative; }
 
-        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(2.5rem, 8vw, 5rem); color: var(--primary); margin-bottom: 20px; }
-        p { max-width: 600px; font-size: 1.1rem; line-height: 1.6; font-weight: 300; }
-        .highlight { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 20px 0; color: var(--text); }
+        /* Typography */
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(3rem, 10vw, 6rem); color: var(--primary); margin-bottom: 20px; }
+        .typewriter { font-size: 1.2rem; min-height: 1.6em; max-width: 600px; font-weight: 300; }
 
-        /* Botões */
-        .nav-btn {
-            margin-top: 30px;
-            padding: 15px 40px;
-            border-radius: 50px;
-            border: none;
-            background: var(--text);
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            z-index: 100;
-        }
-        .nav-btn:hover { background: var(--primary); transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3); }
+        /* Music Toggle */
+        #music-toggle { position: fixed; top: 20px; right: 20px; z-index: 2000; background: white; border: none; padding: 10px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; }
 
-        /* Cards e Status */
-        .stat-card {
-            background: white;
-            padding: 25px 40px;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            margin-top: 20px;
-        }
+        /* Sections Variations */
+        .section-night { background: var(--night) !important; color: white !important; }
+        .section-night h1 { color: #5bc0be; }
 
-        #final-gift {
-            display: none;
-            margin-top: 30px;
-            padding: 30px;
-            background: white;
-            border-radius: 30px;
-            box-shadow: 0 15px 40px rgba(255, 77, 109, 0.15);
-            border: 1px solid #ffe3e8;
-            max-width: 550px;
-            text-align: left;
-            animation: fadeInUp 1s ease forwards;
-        }
+        /* Floating Elements */
+        .floating-heart { position: absolute; pointer-events: none; animation: floatUp 4s linear infinite; z-index: 1; opacity: 0.6; }
+        @keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-100vh) scale(1.5); opacity: 0; } }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-next { margin-top: 40px; padding: 18px 45px; border-radius: 100px; border: none; background: var(--text); color: white; font-weight: 600; cursor: pointer; transition: 0.4s; z-index: 100; letter-spacing: 2px; }
+        .btn-next:hover { background: var(--primary); transform: scale(1.1); box-shadow: 0 15px 30px rgba(255, 77, 109, 0.4); }
 
-        /* Decoração */
-        .heart-particle { position: absolute; pointer-events: none; animation: floatUp 4s linear infinite; z-index: 1; }
-        @keyframes floatUp { 0% { transform: translateY(0) rotate(0); opacity: 1; } 100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
-
-        .progress-bar { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 1000; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: 0.3s; }
-        .dot.active { background: var(--primary); transform: scale(1.4); }
+        .future-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 30px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); margin-top: 20px; display: none; }
     </style>
 </head>
 <body>
 
-    <div class="progress-bar" id="dots">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-    </div>
+    <div id="cursor"></div>
+
+    <button id="music-toggle" onclick="toggleMusic()">🎵</button>
+    <audio id="bg-music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="timeline-wrapper" id="master-container">
         
         <section>
-            <h1>Nossa Jornada</h1>
-            <p>Prepare-se para uma viagem pelos nossos melhores 4 meses...</p>
-            <button class="nav-btn" onclick="next(1)">Começar a Jornada ➔</button>
+            <h1 id="title-1">Oi, meu amor...</h1>
+            <p class="typewriter" id="text-1"></p>
+            <button class="btn-next" onclick="next(1)">Entrar no nosso mundo ➔</button>
         </section>
 
         <section style="background: #fff0f3;">
-            <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; margin-bottom: 10px; color: var(--primary);">Onde tudo começou</p>
-            <div class="highlight">Gonçalves, MG • 22 de Novembro</div>
-            <p>Naquelas montanhas, entre o frio e o seu sorriso, o universo decidiu que era a hora de começarmos a caminhar juntos.</p>
-            <button class="nav-btn" onclick="next(2)">Continuar... ➔</button>
+            <p style="letter-spacing: 4px; font-size: 0.7rem; color: var(--primary); margin-bottom: 20px;">NOSSA ETERNIDADE EM NÚMEROS</p>
+            <div style="background: white; padding: 40px; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.03);">
+                <h2 id="batimentos" style="font-size: 3.5rem; color: var(--text); font-weight: 800;">0</h2>
+                <p style="opacity: 0.6;">batidas do meu coração por você.</p>
+            </div>
+            <button class="btn-next" onclick="next(2)">Mas por que você? ➔</button>
         </section>
 
         <section>
-            <h1>Cada Segundo Conta</h1>
-            <div class="stat-card">
-                <p style="font-size: 0.8rem; color: #888; text-transform: uppercase;">Meu coração já bateu por você aprox.</p>
-                <div id="batimentos" style="font-size: 2.5rem; font-weight: 800; color: var(--primary);">0</div>
-                <p style="font-size: 0.8rem; color: #888;">vezes desde o nosso primeiro "sim".</p>
-            </div>
-            <p style="margin-top: 20px;">E o mais incrível é que ele ainda acelera toda vez que te vejo.</p>
-            <button class="nav-btn" onclick="next(3)">O que eu sinto ➔</button>
+            <h1 style="font-size: 3.5rem;">Porque você é única.</h1>
+            <p class="typewriter" id="text-3" style="font-style: italic; font-family: 'Playfair Display'; font-size: 1.5rem;"></p>
+            <button class="btn-next" onclick="next(3)">Para onde vamos? ➔</button>
         </section>
 
-        <section style="background: var(--text); color: white;">
-            <h1 style="color: white;">Por que você?</h1>
-            <p style="font-style: italic; font-size: 1.3rem; line-height: 1.8;">"Porque você é a única pessoa que consegue me fazer sorrir apenas com um olhar. Sua essência ilumina tudo ao meu redor e me faz querer ser melhor a cada dia."</p>
-            <button class="nav-btn" onclick="next(4)" style="background: var(--primary);">Nosso Futuro ➔</button>
+        <section class="section-night">
+            <h1>Nossos Sonhos.</h1>
+            <div id="text-4" class="typewriter"></div>
+            <button class="btn-next" style="background: #5bc0be;" onclick="showFuture()">Revelar Destinos ✈️</button>
+            
+            <div class="future-card" id="future">
+                <p>📍 <strong>Agosto 2026:</strong> Abraçar sua família em <b>Itapipoca</b>.</p>
+                <p style="margin: 15px 0;">🇮🇹 <strong>2028:</strong> Gelatto e pôr do sol na <b>Itália</b>.</p>
+                <p style="font-family: 'Dancing Script'; font-size: 2rem; color: #5bc0be;">Tudo com você.</p>
+            </div>
         </section>
 
         <section>
-            <h1>Nossos Próximos Passos</h1>
-            <p>O melhor de celebrar 4 meses é saber que o nosso mapa ainda tem muitos destinos incríveis para carimbar.</p>
-            
-            <div id="final-gift">
-                <h3 style="font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 20px; text-align: center;">O Que Vem Por Aí:</h3>
-                
-                <div style="margin-bottom: 15px;">
-                    <strong style="color: var(--primary);">📍 Agosto de 2026:</strong>
-                    <p style="font-size: 0.95rem; margin-top: 3px;">Nossa viagem para <b>Itapipoca</b>. Mal posso esperar para conhecer suas raízes e sua família.</p>
-                </div>
-
-                <div style="margin-bottom: 15px;">
-                    <strong style="color: var(--primary);">🇮🇹 2028:</strong>
-                    <p style="font-size: 0.95rem; margin-top: 3px;">Nosso grande sonho internacional. Ver o pôr do sol na <b>Itália</b> brindando ao nosso amor.</p>
-                </div>
-
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-                
-                <p style="font-size: 1rem; color: var(--text); font-style: italic; text-align: center;">
-                    "Prometo estar ao seu lado em cada um desses destinos. Eu te amo infinitamente! ❤️"
-                </p>
-            </div>
-            
-            <button class="nav-btn" id="btn-final" onclick="celebrar()" style="background: var(--primary);">Ver nosso horizonte ➔</button>
+            <h1>Feliz 4 Meses.</h1>
+            <p>Este é o meu "eu te amo" em forma de código.</p>
+            <button class="btn-next" onclick="finalCelebrate()">Celebrar Nós Dois ❤️</button>
         </section>
-
     </div>
 
     <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Navigation & Typewriter
         let currentStep = 0;
         const container = document.getElementById('master-container');
-        const dots = document.querySelectorAll('.dot');
+        
+        const texts = [
+            "Hoje fazemos 4 meses, e eu decidi te contar uma história...",
+            "", // Section 2 doesn't use typewriter
+            "Você transformou um dia comum em Gonçalves no início da melhor aventura da minha vida. Te amar é fácil, é leve, é casa.",
+            "Nosso mapa está apenas começando a ser desenhado. De Itapipoca ao Coliseu, meu destino é onde você estiver."
+        ];
+
+        function typeWriter(text, elementId, speed = 50) {
+            let i = 0;
+            const element = document.getElementById(elementId);
+            element.innerHTML = "";
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
 
         function next(step) {
             currentStep = step;
             container.style.transform = `translateX(-${step * 100}vw)`;
-            dots.forEach((dot, index) => dot.classList.toggle('active', index === step));
-            if(step === 4) setTimeout(celebrar, 500);
+            if (texts[step]) {
+                setTimeout(() => typeWriter(texts[step], `text-${step + 1}`), 800);
+            }
         }
 
-        // Batimentos do Coração (base 80bpm)
+        // Heartbeats (80bpm)
         const inicio = new Date("2025-11-22T00:00:00").getTime();
         setInterval(() => {
             const agora = new Date().getTime();
@@ -180,29 +140,35 @@
             document.getElementById("batimentos").innerHTML = batidas.toLocaleString('pt-BR');
         }, 1000);
 
-        // Chuva de Corações
-        function createHeart() {
+        // Hearts Animation
+        setInterval(() => {
             const heart = document.createElement("div");
-            heart.className = "heart-particle";
+            heart.className = "floating-heart";
             heart.innerHTML = ["❤️", "💖", "✨", "🌸"][Math.floor(Math.random() * 4)];
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.top = "100vh";
-            heart.style.fontSize = (Math.random() * 15 + 10) + "px";
+            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 4000);
-        }
-        setInterval(createHeart, 350);
+        }, 300);
 
-        function celebrar() {
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff4d6d', '#ffffff', '#ffb3c1']
-            });
-            document.getElementById('final-gift').style.display = 'block';
-            document.getElementById('btn-final').style.display = 'none';
+        // Music
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            if (music.paused) { music.play(); } else { music.pause(); }
         }
+
+        function showFuture() {
+            document.getElementById('future').style.display = 'block';
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.8 }, colors: ['#5bc0be', '#ffffff'] });
+        }
+
+        function finalCelebrate() {
+            confetti({ particleCount: 400, spread: 150, origin: { y: 0.5 } });
+        }
+
+        // Init first typewriter
+        window.onload = () => typeWriter(texts[0], "text-1");
     </script>
 </body>
 </html>
