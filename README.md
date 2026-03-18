@@ -1,6 +1,6 @@
 # ❤️ Nossa História em Código
 
-Bem-vinda ao nosso cantinho digital, **[Nome dela]**! 🌹
+Bem-vinda ao nosso cantinho digital, **[Livia]**! 🌹
 
 Este repositório foi criado para celebrar nossos **4 meses** juntos. Mais do que linhas de código, aqui tem um pouquinho de tudo o que vivemos desde o dia 22 de novembro.
 
@@ -16,7 +16,7 @@ Este repositório foi criado para celebrar nossos **4 meses** juntos. Mais do qu
 | :--- | :--- |
 | **Tempo Juntos** | 4 Meses (120 dias de felicidade) |
 | **Risadas** | ∞ (Infinitas) |
-| **Planos para o Futuro** | Carregando... ⌛ |
+| **Planos para o Futuro** | os melhores possiveis ⌛ |
 
 ---
 
